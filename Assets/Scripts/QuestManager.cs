@@ -10,16 +10,32 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         List<Transform> availablePos = new List<Transform>(positions);
+        List<int> usedIndexes = new List<int>();
 
-        for (int i = 0; i < quests.Count; i++)
+        foreach (GameObject quest in quests)
         {
-            int randomIndex = Random.Range(0, quests.Count);
+            // Vérifie s'il reste des positions disponibles
+            if (availablePos.Count == 0)
+            {
+                Debug.LogWarning("Il n'y a plus de positions disponibles pour instancier les quêtes.");
+                break; // Sort de la boucle si toutes les positions ont été utilisées
+            }
 
-            Transform spawnTransform = availablePos[randomIndex];
+            int randomIndex;
+            Transform spawnTransform;
 
-            Instantiate(quests[i], spawnTransform.position, Quaternion.identity);
+            // Trouve un index non utilisé
+            do
+            {
+                randomIndex = Random.Range(0, availablePos.Count);
+            }
+            while (usedIndexes.Contains(randomIndex));
 
-            availablePos.RemoveAt(randomIndex);
+            spawnTransform = availablePos[randomIndex];
+            usedIndexes.Add(randomIndex);
+
+            // Instancie la quête
+            Instantiate(quest, spawnTransform.position, Quaternion.identity);
         }
     }
 }

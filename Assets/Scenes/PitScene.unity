@@ -154,15 +154,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c876b2e118f6e4c4ba4ffe3ff52dc683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questPos:
+  positions:
   - {fileID: 333364941}
   - {fileID: 1279376170}
   - {fileID: 1069931121}
   - {fileID: 1312519341}
-  questList:
+  quests:
   - {fileID: 8381327987240453531, guid: 34ae0c30fdad62b4a841027134317369, type: 3}
-  - {fileID: 7443172183800186822, guid: aa80368604788e44a954f9611f5525b2, type: 3}
   - {fileID: 5123787051854057730, guid: c9feb6a36f8983a4aa5a9f6e61bc32f8, type: 3}
+  - {fileID: 7443172183800186822, guid: aa80368604788e44a954f9611f5525b2, type: 3}
   - {fileID: 4291101906754616822, guid: 377e5af0a3650204aa00cf58f4e6057d, type: 3}
 --- !u!114 &114632209
 MonoBehaviour:
@@ -376,7 +376,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
