@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
-    [Header("Camera Control")]
+    [Title("Camera Control")]
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
     [SerializeField] private float lookSensitivity;
 
-    [Header("Player Movement")]
+    [Title("Player Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float crouchSpeed;
     [SerializeField] private float jumpHeight;
 
-    [Header("Crouch")]
+    [Title("Crouch")]
     [SerializeField] private float standingHeight;
     [SerializeField] private float crouchingHeight;
 
