@@ -5,7 +5,6 @@ using UnityEngine;
 public class IKFootSolver : MonoBehaviour
 {
 	[SerializeField] private Transform body;
-	float footSpacing;
 	[SerializeField] private float stepDistance;
 	[SerializeField] private float stepHeight;
 	[SerializeField] private float speed;
@@ -23,29 +22,32 @@ public class IKFootSolver : MonoBehaviour
 
 	private void Start()
 	{
-		footSpacing = transform.localPosition.x;
+		footOffset += new Vector3(transform.localPosition.x, 0, 0);
 		currentPosition = newPosition = oldPosition = transform.position;
 		lerp = 1;
 	}
 
 	private void Update()
 	{
-		transform.position = currentPosition + footOffset;
+		transform.position = currentPosition;
 
-		Ray ray = new Ray(body.position + (body.right * footSpacing), Vector3.down);
+		Ray ray = new Ray(body.position + body.right * footOffset.x + body.forward * footOffset.z + Vector3.up * 2, Vector3.down);
 		if(Physics.Raycast(ray, out RaycastHit info, 10))
 		{
-			if(Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving())
+			if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving())
 			{
 				lerp = 0;
 				direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
-				newPosition = info.point + (body.forward * stepDistance * direction) + footOffset;
+				newPosition = info.point + (body.forward * stepDistance * direction);
+				Debug.Log($"hit object: {info.transform.name} {Mathf.FloorToInt(newPosition.y)}");
 			}
 		}
 		if (lerp < 1)
 		{
 			Vector3 footPosition = Vector3.Lerp(oldPosition, newPosition, lerp);
-			footPosition.y = Mathf.Sin(lerp * Mathf.PI) * stepHeight;
+			float stepProgress = Mathf.Sin(lerp * Mathf.PI);
+			float stepHeightFactor = Mathf.Clamp01(stepProgress * 2);
+			footPosition.y = Mathf.Lerp(oldPosition.y, newPosition.y, stepProgress) + stepHeightFactor * stepHeight;
 
 			currentPosition = footPosition;
 			lerp += Time.deltaTime * speed;
