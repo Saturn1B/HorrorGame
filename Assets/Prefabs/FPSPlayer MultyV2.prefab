@@ -1421,6 +1421,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   playerCam: {fileID: 0}
+  canvas: {fileID: 1370578779740369732}
 --- !u!1 &8690847106272721590
 GameObject:
   m_ObjectHideFlags: 0
