@@ -65,15 +65,7 @@ public class SteamLobby : NetworkBehaviour
 
         hostButton.SetActive(false);
 
-        if(!isLocalPlayer)
-        {
-            return;
-        }
-
-        // Activate player's camera only if it's the local player
-        Camera playerCamera = GetComponentInChildren<Camera>();
-        if (playerCamera != null)
-            playerCamera.enabled = true;
+        
     }
     
 }

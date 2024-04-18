@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7753308724464867349}
   - component: {fileID: 9042431644135722382}
   - component: {fileID: 6569158165873362526}
+  - component: {fileID: 94093447607117064}
   m_Layer: 0
   m_Name: FPSPlayer Multy
   m_TagString: Player
@@ -186,6 +187,21 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &94093447607117064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342106431650556681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45e8ce4b6061be4ea711ef2b4c92613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &8690847106272721590
 GameObject:
   m_ObjectHideFlags: 0
