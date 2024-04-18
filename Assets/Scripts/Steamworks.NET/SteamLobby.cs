@@ -3,7 +3,7 @@ using UnityEngine;
 using Steamworks;
 using System;
 
-public class SteamLobby : MonoBehaviour
+public class SteamLobby : NetworkBehaviour
 {
     private NetworkManager networkManager;
 
@@ -64,6 +64,11 @@ public class SteamLobby : MonoBehaviour
         networkManager.StartClient();
 
         hostButton.SetActive(false);
+
+        if(!isLocalPlayer)
+        {
+            return;
+        }
 
         // Activate player's camera only if it's the local player
         Camera playerCamera = GetComponentInChildren<Camera>();
