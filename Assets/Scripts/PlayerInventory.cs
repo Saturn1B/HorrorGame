@@ -46,7 +46,7 @@ public class PlayerInventory : MonoBehaviour
 		{
 			if (inventorySlots[i].itemDescription != null && inventorySlots[i].itemDescription.itemTag == itemDescription.itemTag && inventorySlots[i].GetItemNumber() < 100)
 			{
-				inventorySlots[i].AddItemNumber(1);
+				inventorySlots[i].AddItemNumber(100);
 				return true;
 			}
 		}
