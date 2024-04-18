@@ -11,13 +11,16 @@ public class InventorySlot : MonoBehaviour
 	private int itemNumber;
 	[HideInInspector] public ItemScriptable itemDescription;
 
+	public Camera playerCAm;
+
 	private void Start()
 	{
 		itemImage = transform.GetChild(0).GetComponent<Image>();
 		itemNumberText = transform.GetComponentInChildren<TMP_Text>();
 		itemImage.gameObject.SetActive(false);
 		itemNumberText.gameObject.SetActive(false);
-	}
+        
+    }
 
 	public void SetItem(ItemScriptable itemScriptable)
 	{
@@ -33,8 +36,8 @@ public class InventorySlot : MonoBehaviour
 
 		AddItemNumber(-1);
 
-		Vector3 instantiatePos = Camera.main.transform.position + Camera.main.transform.forward;
-		Quaternion instantiateRot = Camera.main.transform.parent.transform.rotation;
+		Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+		Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
 		GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 		item.GetComponent<ItemObject>().Use();
 

@@ -13,7 +13,7 @@ public class Throwable : ItemObject
 
 	public override void Use()
 	{
-		Vector3 throwDirection = Camera.main.transform.forward * 10 + Vector3.up * 3;
+		Vector3 throwDirection = FindObjectOfType<Camera>().transform.forward * 10 + Vector3.up * 3;
 		rb.AddForce(throwDirection, ForceMode.Impulse);
 	}
 }

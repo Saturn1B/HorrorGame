@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class PlayerCamera : NetworkBehaviour
 {
-    //public Camera camera;
+    public Camera playerCam;
 
     public void Start()
     {
-        //camera = Camera.main;
-
         if (this.isLocalPlayer)
         {
             // Activate the camera attached to the player object
             Camera playerCamera = this.GetComponentInChildren<Camera>();
             if (playerCamera != null)
                 playerCamera.enabled = true;
+
+            playerCam = playerCamera;
         }
         else
         {
