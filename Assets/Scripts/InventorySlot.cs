@@ -11,7 +11,7 @@ public class InventorySlot : NetworkBehaviour
 	private Image itemImage;
 	private TMP_Text itemNumberText;
 	private int itemNumber;
-	[HideInInspector] public ItemScriptable itemDescription;
+	public ItemScriptable itemDescription;
 
 	public Camera playerCAm;
 
@@ -38,12 +38,12 @@ public class InventorySlot : NetworkBehaviour
 
 		AddItemNumber(-1);
 
-		//Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-		//Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-		//GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
-		
+		Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+		Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+        GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+        item.GetComponent<ItemObject>().Use();
 
-        CmdSpawn(itemDescription.itemPrefab);
+        CmdSpawn(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 
         if (itemNumber <= 0)
 		{
@@ -53,18 +53,30 @@ public class InventorySlot : NetworkBehaviour
 	}
 
     [Command]
-    private void CmdSpawn(GameObject itemPrefab)
+    private void CmdSpawn(GameObject itemPrefab, Vector3 vector3, Quaternion quaternion)
     {
-        Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-        Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-        GameObject item = Instantiate(itemPrefab, instantiatePos, instantiateRot);
+		if (!isLocalPlayer)
+		{
+            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+            GameObject item = Instantiate(itemPrefab, vector3, quaternion);
+            
+        }
 
-        NetworkServer.Spawn(item);
-
-        item.GetComponent<ItemObject>().Use();
+		RpcSpawn(itemPrefab, vector3, quaternion);
     }
 
-    
+
+	[ClientRpc]
+    private void RpcSpawn(GameObject itemPrefab, Vector3 vector3, Quaternion quaternion)
+    {
+        if (!isLocalPlayer)
+        {
+            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+            GameObject item = Instantiate(itemPrefab, vector3, quaternion);            
+        }
+    }
 
     public void AddItemNumber(int value)
 	{

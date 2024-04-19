@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 6527936435236471680}
   - component: {fileID: 6607531124472228112}
   - component: {fileID: 5327648624766915340}
+  - component: {fileID: 7546281667052194205}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -340,8 +341,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278a182aafde8ef479a5c9bce84b358c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemDescription: {fileID: 0}
+  bottle: {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509, type: 3}
   playerCAm: {fileID: 1020143624784532481}
+--- !u!114 &7546281667052194205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905323325922934150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 300756258
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &3102939515574175869
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +756,7 @@ GameObject:
   - component: {fileID: 3746262932039147469}
   - component: {fileID: 7156417069530171389}
   - component: {fileID: 6157747965808167986}
+  - component: {fileID: 6289617343608553779}
   m_Layer: 5
   m_Name: InventorySlot (1)
   m_TagString: Untagged
@@ -812,8 +835,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278a182aafde8ef479a5c9bce84b358c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemDescription: {fileID: 0}
+  bottle: {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509, type: 3}
   playerCAm: {fileID: 1020143624784532481}
+--- !u!114 &6289617343608553779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837332198936674929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 300756258
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &7364320300005801528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9490d3a720a8a849885dd7dec736c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   playerReach: 4
 --- !u!114 &3608334995652883496
 MonoBehaviour:
