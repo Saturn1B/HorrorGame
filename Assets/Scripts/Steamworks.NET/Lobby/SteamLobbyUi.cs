@@ -3,12 +3,14 @@ using Steamworks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SteamLobbyUi : MonoBehaviour
 {
     public List<string> playerUi = new List<string>();
+    public List<TextMeshProUGUI> namePlayerTexts;    
 
     public GameObject startGameButt;
 
@@ -25,6 +27,11 @@ public class SteamLobbyUi : MonoBehaviour
         {
             playerUi.Add(SteamFriends.GetPersonaName());
             startGameButt.SetActive(false);
+        }
+
+        for (int i = 0; i < playerUi.Count; i++)
+        {
+            namePlayerTexts[i].text = playerUi[i];
         }
     }
 
