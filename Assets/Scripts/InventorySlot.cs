@@ -43,24 +43,14 @@ public class InventorySlot : NetworkBehaviour
 		GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 		item.GetComponent<ItemObject>().Use();
 
-		CmdSpawn(itemDescription.itemPrefab);
+        NetworkServer.Spawn(item);
 
-		if (itemNumber <= 0)
+        if (itemNumber <= 0)
 		{
 			itemDescription = null;
 			itemImage.gameObject.SetActive(false);
 		}
 	}
-
-	[Command]
-    private void CmdSpawn(GameObject item)
-    {
-        Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-        Quaternion instantiateRot = playerCAm.transform.parent.rotation;
-
-        GameObject obj = Instantiate(item, instantiatePos, instantiateRot);
-        NetworkServer.Spawn(obj); // Synchroniser l'objet sur tous les clients
-    }
 
 
     public void AddItemNumber(int value)
