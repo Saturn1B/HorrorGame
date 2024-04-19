@@ -861,6 +861,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUi: []
+  namePlayerTexts:
+  - {fileID: 1673735568}
+  - {fileID: 228908680}
+  - {fileID: 1460853950}
+  - {fileID: 1653113557}
   startGameButt: {fileID: 1539028921}
 --- !u!1 &811655169
 GameObject:
