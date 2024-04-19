@@ -29,6 +29,10 @@ public class CubeSpawner : NetworkBehaviour
     [ClientRpc]
     void RpcSpawnCube(GameObject cube)
     {
-        Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
+        if (!isLocalPlayer)
+        {
+            Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
+        }
+        
     }
 }
