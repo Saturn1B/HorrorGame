@@ -56,10 +56,8 @@ public class InventorySlot : NetworkBehaviour
     private void CmdSpawn(GameObject item)
     {
 		if (!isLocalPlayer)
-		{
-            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+		{            
+            Instantiate(item);
         }
 
 		RpcSpawn(item);
@@ -70,9 +68,7 @@ public class InventorySlot : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+            Instantiate(item);
         }
     }
 
