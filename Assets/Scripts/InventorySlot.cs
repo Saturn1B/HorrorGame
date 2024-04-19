@@ -34,9 +34,7 @@ public class InventorySlot : NetworkBehaviour
 
 	public void UseItem()
 	{
-		Debug.Log("oui");
-		if (!isLocalPlayer) return;
-		Debug.Log("stiti");
+		if (!isServer) return;
 
 		if (itemDescription == null) return;
 
@@ -64,10 +62,20 @@ public class InventorySlot : NetworkBehaviour
         GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 
         NetworkServer.Spawn(item);
-    }
+		RpcSpawnOnClients(item);
+	}
+
+	[ClientRpc]
+	private void RpcSpawnOnClients(GameObject item)
+	{
+		if (!isServer)
+		{
+			NetworkServer.Spawn(item); // Make sure clients spawn the object too
+		}
+	}
 
 
-    public void AddItemNumber(int value)
+	public void AddItemNumber(int value)
 	{
 		itemNumber += value;
 		if(itemNumber >= 1)
