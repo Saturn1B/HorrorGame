@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using Mirror;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : NetworkBehaviour
 {
 	private Image itemImage;
 	private TMP_Text itemNumberText;
@@ -41,6 +43,8 @@ public class InventorySlot : MonoBehaviour
 		GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 		item.GetComponent<ItemObject>().Use();
 
+		CmdSpawn(item);
+
 		if (itemNumber <= 0)
 		{
 			itemDescription = null;
@@ -48,7 +52,31 @@ public class InventorySlot : MonoBehaviour
 		}
 	}
 
-	public void AddItemNumber(int value)
+	[Command]
+    private void CmdSpawn(GameObject item)
+    {
+		if (!isLocalPlayer)
+		{
+            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+            Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+        }
+
+		RpcSpawn(item);
+    }
+
+	[ClientRpc]
+    private void RpcSpawn(GameObject item)
+    {
+        if (!isLocalPlayer)
+        {
+            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+            Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+        }
+    }
+
+    public void AddItemNumber(int value)
 	{
 		itemNumber += value;
 		if(itemNumber >= 1)
