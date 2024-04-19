@@ -55,22 +55,21 @@ public class InventorySlot : NetworkBehaviour
     [Command]
     private void CmdSpawn(GameObject itemPrefab)
     {
-        NetworkServer.Spawn(itemPrefab); // Synchroniser l'objet sur tous les clients
+		if (!isLocalPlayer)
+		{
+            NetworkServer.Spawn(itemPrefab);
+        }
+
+		RpcSpawn(itemPrefab);
     }
 
     [ClientRpc]
     private void RpcSpawn(GameObject item)
     {
-        // Ne pas instancier à nouveau l'objet sur le client qui a appelé la commande
-        if (!isServer)
+        if (!isLocalPlayer)
         {
-            // Il n'est pas nécessaire d'instantier l'objet ici
-            // L'objet est déjà synchronisé et instancié automatiquement sur le client par Mirror
+            NetworkServer.Spawn(item);
         }
-		else
-		{
-
-		}
     }
 
     public void AddItemNumber(int value)
