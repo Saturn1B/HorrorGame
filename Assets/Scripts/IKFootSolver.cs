@@ -10,7 +10,7 @@ public class IKFootSolver : MonoBehaviour
 	[SerializeField] private float speed;
 	[SerializeField] private Vector3 footOffset;
 
-	[SerializeField] private IKFootSolver otherFoot;
+	[SerializeField] private IKFootSolver otherFoot1, otherFoot2;
 
 	Vector3 newPosition;
 	Vector3 currentPosition;
@@ -30,24 +30,25 @@ public class IKFootSolver : MonoBehaviour
 	private void Update()
 	{
 		transform.position = currentPosition;
-
 		Ray ray = new Ray(body.position + body.right * footOffset.x + body.forward * footOffset.z + Vector3.up * 2, Vector3.down);
 		if(Physics.Raycast(ray, out RaycastHit info, 10))
 		{
-			if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving())
+			if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot1.IsMoving() && !otherFoot2.IsMoving())
 			{
 				lerp = 0;
 				direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
-				newPosition = info.point + (body.forward * stepDistance * direction);
+				newPosition = info.point * direction;
+				newPosition.y = info.point.y;
 				Debug.Log($"hit object: {info.transform.name} {Mathf.FloorToInt(newPosition.y)}");
 			}
 		}
 		if (lerp < 1)
 		{
 			Vector3 footPosition = Vector3.Lerp(oldPosition, newPosition, lerp);
-			float stepProgress = Mathf.Sin(lerp * Mathf.PI);
-			float stepHeightFactor = Mathf.Clamp01(stepProgress * 2);
-			footPosition.y = Mathf.Lerp(oldPosition.y, newPosition.y, stepProgress) + stepHeightFactor * stepHeight;
+			//float stepProgress = Mathf.Sin(lerp * Mathf.PI);
+			//float stepHeightFactor = Mathf.Clamp01(stepProgress * 2);
+			//footPosition.y = Mathf.Lerp(oldPosition.y, newPosition.y, stepProgress) + stepHeightFactor * stepHeight;
+			footPosition.y = Mathf.Clamp(Mathf.Sin(lerp * Mathf.PI) * stepHeight, newPosition.y, newPosition.y + stepHeight);
 
 			currentPosition = footPosition;
 			lerp += Time.deltaTime * speed;
