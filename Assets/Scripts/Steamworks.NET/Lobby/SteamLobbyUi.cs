@@ -14,6 +14,8 @@ public class SteamLobbyUi : MonoBehaviour
 
     public GameObject startGameButt;
 
+    private CSteamID currentLobbyId;
+
     private void Start()
     {
         if (NetworkServer.active)//host
@@ -22,7 +24,7 @@ public class SteamLobbyUi : MonoBehaviour
             startGameButt.SetActive(true);
             startGameButt.GetComponent<Button>().onClick.AddListener(StartGameClicked);
             playerUi.Add(SteamFriends.GetPersonaName());
-            
+
         }
         else//other
         {

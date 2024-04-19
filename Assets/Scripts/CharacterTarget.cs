@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
+using Mirror;
+using Unity.Burst.CompilerServices;
 
-public class CharacterTarget : MonoBehaviour
+public class CharacterTarget : NetworkBehaviour
 {
 	private Transform playerCamera;
 	private PlayerInventory playerInventory;
@@ -27,7 +30,12 @@ public class CharacterTarget : MonoBehaviour
 				if (Input.GetKeyDown(KeyCode.E))
 				{
 					if (playerInventory.AddItem(hit.transform.GetComponent<ItemObject>().itemDescription))
-						Destroy(hit.transform.gameObject);
+					{
+                        Destroy(hit.transform.gameObject);
+
+						CmdDestoy(hit.transform.gameObject);
+                    }
+						
 				}
 			}
 			else
@@ -36,4 +44,25 @@ public class CharacterTarget : MonoBehaviour
 		else
 			HUDManager.Instance.HideIndication();
 	}
+
+
+	[Command]
+    private void CmdDestoy(GameObject obj)
+    {
+        if (!isLocalPlayer)
+		{
+            Destroy(obj);
+        }
+
+		RpcDestroy(obj);
+    }
+
+	[ClientRpc]
+    private void RpcDestroy(GameObject obj)
+    {
+        if (!isLocalPlayer)
+        {
+            Destroy(obj);
+        }
+    }
 }

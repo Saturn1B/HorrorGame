@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
 
 
 
-    IEnumerator Start()
+    IEnumerator Start() 
     {
-        //NetworkClient.RegisterHandler<StartGameMessage>(OnStartGameMessage());
+        NetworkClient.RegisterHandler<StartGameMessage>(OnStartGameMessage);
 
         while (!NetworkServer.active)
         {

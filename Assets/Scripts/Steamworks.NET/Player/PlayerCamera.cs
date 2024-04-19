@@ -6,6 +6,7 @@ public class PlayerCamera : NetworkBehaviour
 {
     public Camera playerCam;
     public GameObject canvas;
+    public PlayerRole roleScripts;
 
     public void Start()
     {
@@ -48,6 +49,8 @@ public class PlayerCamera : NetworkBehaviour
 
                 playerCam = playerCamera;
                 canvas.SetActive(true);
+
+                roleScripts.enabled = true;
             }
             else
             {
@@ -55,6 +58,8 @@ public class PlayerCamera : NetworkBehaviour
                 Camera playerCamera = this.GetComponentInChildren<Camera>();
                 if (playerCamera != null)
                     playerCamera.enabled = false;
+
+                roleScripts.enabled = true;
             }
         }
         
