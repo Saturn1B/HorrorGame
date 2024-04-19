@@ -52,7 +52,7 @@ public class InventorySlot : NetworkBehaviour
 		}*/
 	}
 
-    [Command]
+    [Command(requiresAuthority = false)]
     private void CmdSpawn()
     {
 		if (!isLocalPlayer)
