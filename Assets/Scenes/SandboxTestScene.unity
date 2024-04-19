@@ -957,6 +957,7 @@ MonoBehaviour:
   footOffset: {x: 0, y: 0, z: 8}
   otherFoot1: {fileID: 1188262831}
   otherFoot2: {fileID: 486367107}
+  spiderMovement: {fileID: 0}
 --- !u!4 &355060246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8152927598973210387, guid: 2761082c7dc2b614392d66e8f87713e8,
@@ -1032,6 +1033,7 @@ MonoBehaviour:
   footOffset: {x: -1, y: 0, z: -4}
   otherFoot1: {fileID: 2030932439}
   otherFoot2: {fileID: 1110500252}
+  spiderMovement: {fileID: 0}
 --- !u!4 &486004069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5213019550060301611, guid: 2761082c7dc2b614392d66e8f87713e8,
@@ -1089,6 +1091,7 @@ MonoBehaviour:
   footOffset: {x: -2, y: 0, z: 5}
   otherFoot1: {fileID: 660191258}
   otherFoot2: {fileID: 351356196}
+  spiderMovement: {fileID: 0}
 --- !u!1 &497575786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1199,7 @@ MonoBehaviour:
   footOffset: {x: 2, y: 0, z: -2}
   otherFoot1: {fileID: 1110500252}
   otherFoot2: {fileID: 2030932439}
+  spiderMovement: {fileID: 0}
 --- !u!1 &583558250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,6 +1313,7 @@ MonoBehaviour:
   footOffset: {x: 2, y: 0, z: 5}
   otherFoot1: {fileID: 486367107}
   otherFoot2: {fileID: 1188262831}
+  spiderMovement: {fileID: 0}
 --- !u!1 &738000280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,6 +2027,7 @@ MonoBehaviour:
   footOffset: {x: -2, y: 0, z: -1}
   otherFoot1: {fileID: 533267326}
   otherFoot2: {fileID: 480322866}
+  spiderMovement: {fileID: 0}
 --- !u!4 &1124313488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5422005245931329453, guid: 2761082c7dc2b614392d66e8f87713e8,
@@ -2166,6 +2172,7 @@ MonoBehaviour:
   footOffset: {x: 0, y: 0, z: 7}
   otherFoot1: {fileID: 351356196}
   otherFoot2: {fileID: 660191258}
+  spiderMovement: {fileID: 0}
 --- !u!1001 &1196752767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2532,6 +2539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b25999790265c746b0d2117b2e584c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
 --- !u!65 &1441363168
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3318,6 +3326,7 @@ MonoBehaviour:
   footOffset: {x: 1, y: 0, z: -3}
   otherFoot1: {fileID: 480322866}
   otherFoot2: {fileID: 533267326}
+  spiderMovement: {fileID: 0}
 --- !u!1 &2071900559
 GameObject:
   m_ObjectHideFlags: 0
