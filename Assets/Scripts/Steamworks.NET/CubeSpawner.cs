@@ -28,7 +28,7 @@ public class CubeSpawner : NetworkBehaviour
 
     [ClientRpc]
     void RpcSpawnCube(GameObject cube)
-    {        
-        NetworkServer.Spawn(cube);
+    {
+        Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
     }
 }
