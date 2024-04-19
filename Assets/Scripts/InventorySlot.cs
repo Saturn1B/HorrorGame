@@ -43,7 +43,7 @@ public class InventorySlot : NetworkBehaviour
 		GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 		item.GetComponent<ItemObject>().Use();
 
-		CmdSpawn(item);
+		CmdSpawn(itemDescription.itemPrefab);
 
 		if (itemNumber <= 0)
 		{
@@ -56,8 +56,10 @@ public class InventorySlot : NetworkBehaviour
     private void CmdSpawn(GameObject item)
     {
 		if (!isLocalPlayer)
-		{            
-            Instantiate(item, transform.parent);
+		{
+            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+            GameObject obj = Instantiate(item, instantiatePos, instantiateRot);
         }
 
 		RpcSpawn(item);
@@ -68,7 +70,9 @@ public class InventorySlot : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            Instantiate(item, transform.parent);
+            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+            GameObject obj = Instantiate(item, instantiatePos, instantiateRot);
         }
     }
 
