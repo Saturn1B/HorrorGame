@@ -14,8 +14,6 @@ public class SteamLobbyUi : MonoBehaviour
 
     public GameObject startGameButt;
 
-    private CSteamID currentLobbyId;
-
     private void Start()
     {
         if (NetworkServer.active)//host
@@ -23,19 +21,19 @@ public class SteamLobbyUi : MonoBehaviour
             
             startGameButt.SetActive(true);
             startGameButt.GetComponent<Button>().onClick.AddListener(StartGameClicked);
-            playerUi.Add(SteamFriends.GetPersonaName());
+            //playerUi.Add(SteamFriends.GetPersonaName());
 
         }
         else//other
         {
-            playerUi.Add(SteamFriends.GetPersonaName());
+            //playerUi.Add(SteamFriends.GetPersonaName());
             startGameButt.SetActive(false);
         }
 
-        for (int i = 0; i < playerUi.Count; i++)
+        /*for (int i = 0; i < playerUi.Count; i++)
         {
             namePlayerTexts[i].text = playerUi[i];
-        }
+        }*/
     }
 
     private void StartGameClicked()
