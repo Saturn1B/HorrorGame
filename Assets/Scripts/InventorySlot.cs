@@ -57,7 +57,7 @@ public class InventorySlot : NetworkBehaviour
     {
 		if (!isLocalPlayer)
 		{            
-            Instantiate(item);
+            Instantiate(item, transform.parent);
         }
 
 		RpcSpawn(item);
@@ -68,7 +68,7 @@ public class InventorySlot : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            Instantiate(item);
+            Instantiate(item, transform.parent);
         }
     }
 
