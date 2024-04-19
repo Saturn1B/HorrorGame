@@ -55,26 +55,13 @@ public class InventorySlot : NetworkBehaviour
 	[Command]
     private void CmdSpawn(GameObject item)
     {
-		if (!isLocalPlayer)
-		{
-            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            GameObject obj = Instantiate(item, instantiatePos, instantiateRot);
-        }
+        Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+        Quaternion instantiateRot = playerCAm.transform.parent.rotation;
 
-		RpcSpawn(item);
+        GameObject obj = Instantiate(item, instantiatePos, instantiateRot);
+        NetworkServer.Spawn(obj); // Synchroniser l'objet sur tous les clients
     }
 
-	[ClientRpc]
-    private void RpcSpawn(GameObject item)
-    {
-        if (!isLocalPlayer)
-        {
-            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            GameObject obj = Instantiate(item, instantiatePos, instantiateRot);
-        }
-    }
 
     public void AddItemNumber(int value)
 	{
