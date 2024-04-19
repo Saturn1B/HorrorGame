@@ -43,7 +43,7 @@ public class InventorySlot : NetworkBehaviour
 		GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 		item.GetComponent<ItemObject>().Use();
 
-        NetworkServer.Spawn(item);
+        CmdSpawn(item);
 
         if (itemNumber <= 0)
 		{
@@ -52,6 +52,26 @@ public class InventorySlot : NetworkBehaviour
 		}
 	}
 
+    [Command]
+    private void CmdSpawn(GameObject itemPrefab)
+    {
+        NetworkServer.Spawn(itemPrefab); // Synchroniser l'objet sur tous les clients
+    }
+
+    [ClientRpc]
+    private void RpcSpawn(GameObject item)
+    {
+        // Ne pas instancier à nouveau l'objet sur le client qui a appelé la commande
+        if (!isServer)
+        {
+            // Il n'est pas nécessaire d'instantier l'objet ici
+            // L'objet est déjà synchronisé et instancié automatiquement sur le client par Mirror
+        }
+		else
+		{
+
+		}
+    }
 
     public void AddItemNumber(int value)
 	{
