@@ -34,8 +34,6 @@ public class InventorySlot : NetworkBehaviour
 
 	public void UseItem()
 	{
-		if (!isServer) return;
-
 		if (itemDescription == null) return;
 
 		AddItemNumber(-1);
@@ -57,20 +55,28 @@ public class InventorySlot : NetworkBehaviour
     [Command]
     private void CmdSpawn()
     {
+		if (!isServer)
+		{
+			RpcSpawnOnClients();
+			return;
+		}
         Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
         Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
         GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 
         NetworkServer.Spawn(item);
-		RpcSpawnOnClients(item);
 	}
 
 	[ClientRpc]
-	private void RpcSpawnOnClients(GameObject item)
+	private void RpcSpawnOnClients()
 	{
 		if (!isServer)
 		{
-			NetworkServer.Spawn(item); // Make sure clients spawn the object too
+			Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+			Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+			GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+
+			NetworkServer.Spawn(item);
 		}
 	}
 
