@@ -2,12 +2,15 @@ using Mirror;
 using UnityEngine;
 using Steamworks;
 using System;
+using System.Collections.Generic;
 
 public class SteamLobby : NetworkBehaviour
 {
     private NetworkManager networkManager;
 
     public GameObject hostButton = null;
+
+    private CSteamID currentLobbyId;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> gameLobbyJoinRequested;
@@ -48,7 +51,7 @@ public class SteamLobby : NetworkBehaviour
 
         SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
 
-        steamLobbyUi = GameObject.Find("Canvas").GetComponent<SteamLobbyUi>();
+        steamLobbyUi = GameObject.Find("Canvas").GetComponent<SteamLobbyUi>(); 
         if (steamLobbyUi != null)
         {
             string name = SteamFriends.GetPersonaName();
@@ -74,10 +77,13 @@ public class SteamLobby : NetworkBehaviour
 
         hostButton.SetActive(false);
 
-        if (steamLobbyUi != null)
+
+        int numMembers = SteamMatchmaking.GetNumLobbyMembers(currentLobbyId);
+        for (int i = 0; i < numMembers; i++)
         {
-            string name = SteamFriends.GetPersonaName();
-            steamLobbyUi.playerUi.Add(name);
+            CSteamID memberSteamId = SteamMatchmaking.GetLobbyMemberByIndex(currentLobbyId, i);
+            string playerName = SteamFriends.GetFriendPersonaName(memberSteamId);
+            Debug.Log("Steam Username: " + playerName);
         }
     }
     

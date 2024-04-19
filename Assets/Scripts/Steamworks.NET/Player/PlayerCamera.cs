@@ -14,8 +14,18 @@ public class PlayerCamera : NetworkBehaviour
         if (scene.name == "MultiLobby")
         {
             if (this.isLocalPlayer)
+            {           
+                Camera playerCamera = this.GetComponentInChildren<Camera>();
+                if (playerCamera != null)
+                    playerCamera.enabled = false;
+
+                canvas.SetActive(false);
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
             {
-                // Activate the camera attached to the player object
                 Camera playerCamera = this.GetComponentInChildren<Camera>();
                 if (playerCamera != null)
                     playerCamera.enabled = false;

@@ -18,6 +18,7 @@ public class SteamLobbyUi : MonoBehaviour
     {
         if (NetworkServer.active)//host
         {
+            
             startGameButt.SetActive(true);
             startGameButt.GetComponent<Button>().onClick.AddListener(StartGameClicked);
             playerUi.Add(SteamFriends.GetPersonaName());
