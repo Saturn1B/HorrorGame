@@ -21,7 +21,7 @@ public class InventorySlot : NetworkBehaviour
 		itemNumberText = transform.GetComponentInChildren<TMP_Text>();
 		itemImage.gameObject.SetActive(false);
 		itemNumberText.gameObject.SetActive(false);
-        
+
     }
 
 	public void SetItem(ItemScriptable itemScriptable)
@@ -34,6 +34,10 @@ public class InventorySlot : NetworkBehaviour
 
 	public void UseItem()
 	{
+		Debug.Log("oui");
+		if (!isLocalPlayer) return;
+		Debug.Log("stiti");
+
 		if (itemDescription == null) return;
 
 		AddItemNumber(-1);
@@ -55,16 +59,11 @@ public class InventorySlot : NetworkBehaviour
     [Command]
     private void CmdSpawn()
     {
-		if (!isLocalPlayer)
-		{
-            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+        Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+        Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+        GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
 
-            NetworkServer.Spawn(item);
-        }
-
-		
+        NetworkServer.Spawn(item);
     }
 
 
