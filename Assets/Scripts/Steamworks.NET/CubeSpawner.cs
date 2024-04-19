@@ -22,20 +22,20 @@ public class CubeSpawner : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            GameObject cube = Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
+           Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
 
-            RpcSpawnCube(cube);
+            
         }
-        
-        //NetworkServer.Spawn(cube);
 
+        //NetworkServer.Spawn(cube);
+        RpcSpawnCube();
         // Informer les clients de l'apparition du cube
-        
+
 
     }
 
     [ClientRpc]
-    void RpcSpawnCube(GameObject cube)
+    void RpcSpawnCube()
     {
         if (!isLocalPlayer)
         {
