@@ -38,45 +38,35 @@ public class InventorySlot : NetworkBehaviour
 
 		AddItemNumber(-1);
 
-		Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-		Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-        GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
-        item.GetComponent<ItemObject>().Use();
+		//Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+		//Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+        //GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+        //item.GetComponent<ItemObject>().Use();
 
-        CmdSpawn(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+        CmdSpawn();
 
-        if (itemNumber <= 0)
+        /*if (itemNumber <= 0)
 		{
 			itemDescription = null;
 			itemImage.gameObject.SetActive(false);
-		}
+		}*/
 	}
 
     [Command]
-    private void CmdSpawn(GameObject itemPrefab, Vector3 vector3, Quaternion quaternion)
+    private void CmdSpawn()
     {
 		if (!isLocalPlayer)
 		{
             Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
             Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            GameObject item = Instantiate(itemPrefab, vector3, quaternion);
-            
+            GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+
+            NetworkServer.Spawn(item);
         }
 
-		RpcSpawn(itemPrefab, vector3, quaternion);
+		
     }
 
-
-	[ClientRpc]
-    private void RpcSpawn(GameObject itemPrefab, Vector3 vector3, Quaternion quaternion)
-    {
-        if (!isLocalPlayer)
-        {
-            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            GameObject item = Instantiate(itemPrefab, vector3, quaternion);            
-        }
-    }
 
     public void AddItemNumber(int value)
 	{
