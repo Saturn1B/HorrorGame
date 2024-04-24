@@ -18,6 +18,8 @@ public class SteamLobby : MonoBehaviour
 
     private const string HostAddressKey = "host";
 
+    public List<string> lobbyNames = new List<string>();
+
 
     private void Start()
     {
@@ -52,7 +54,7 @@ public class SteamLobby : MonoBehaviour
 
 
         string name = SteamFriends.GetPersonaName();
-        SteamLobbyUi.instance.playerUi.Add(name);
+        lobbyNames.Add(name);
     }
 
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
@@ -90,6 +92,7 @@ public class SteamLobby : MonoBehaviour
 
             // Vous pouvez ajouter ces noms à une liste ou à l'interface utilisateur comme vous le souhaitez
             //SteamLobbyUi.instance.playerUi.Add(memberName);
+            lobbyNames.Add(memberName);
         }
 
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey); 
