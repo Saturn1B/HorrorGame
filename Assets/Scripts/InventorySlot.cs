@@ -14,9 +14,9 @@ public class InventorySlot : NetworkBehaviour
 	public ItemScriptable itemDescription;
 
 	private Camera playerCamera;
-    private PlayerInventory playerInventory;
+	private PlayerInventory playerInventory;
 
-    private GameObject currentPrefab;
+    [SerializeField] private GameObject currentPrefab;
 
     private void Start()
 	{
@@ -35,12 +35,12 @@ public class InventorySlot : NetworkBehaviour
 		itemImage.gameObject.SetActive(true);
 		itemImage.sprite = itemDescription.itemSprite;
 
-		foreach (GameObject prefab in playerInventory.prefabs)
-		{
-			if (prefab == itemDescription.itemPrefab)
-				currentPrefab = prefab;
-		}
-		if (currentPrefab == null) currentPrefab = playerInventory.prefabs[0];
+		//foreach (GameObject prefab in playerInventory.prefabs)
+		//{
+		//	if (prefab == itemDescription.itemPrefab)
+		//		currentPrefab = prefab;
+		//}
+		//if (currentPrefab == null) currentPrefab = playerInventory.prefabs[0];
 
 		AddItemNumber(1);
 	}
