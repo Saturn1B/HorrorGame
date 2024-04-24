@@ -28,13 +28,7 @@ public class SteamLobbyUi : NetworkBehaviour
 
             Debug.Log(" I'm host");
 
-            if (SteamManager.Initialized)
-            {
-                string playerName = SteamFriends.GetPersonaName();
-                Debug.Log("Player Name: " + playerName);
-
-                CmdSendPlayerNameToServer(playerName);
-            }
+            
         }
         else//other
         {
@@ -43,31 +37,13 @@ public class SteamLobbyUi : NetworkBehaviour
 
             Debug.Log(" I'm client ");
 
-            if (SteamManager.Initialized)
-            {
-                string playerName = SteamFriends.GetPersonaName();
-                Debug.Log("Player Name: " + playerName);
-
-                CmdSendPlayerNameToServer(playerName);
-            }
+            
         }
 
         
     }
 
-    [Command]
-    public void CmdSendPlayerNameToServer(string playerName)
-    {
-        RpcReceivePlayerNameFromServer(playerName);
-    }
-
-
-    [ClientRpc]
-    public void RpcReceivePlayerNameFromServer(string playerName)
-    {
-        // Appelle la fonction pour mettre à jour le pseudonyme côté client
-        AddPlayerName(playerName);
-    }
+    
 
     public void AddPlayerName(string playerName)
     {

@@ -74,7 +74,8 @@ public class SteamLobby : MonoBehaviour
         hostButton.SetActive(false);
 
 
-        
+        string name = SteamFriends.GetPersonaName();
+        SteamLobbyUi.instance.playerUi.Add(name);
     }
     
 
