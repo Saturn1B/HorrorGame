@@ -344,9 +344,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   itemDescription: {fileID: 0}
-  playerCamera: {fileID: 0}
-  playerInventory: {fileID: 0}
-  currentPrefab: {fileID: 0}
+  currentPrefab: {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509,
+    type: 3}
 --- !u!1 &3102939515574175869
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,9 +820,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   itemDescription: {fileID: 0}
-  playerCamera: {fileID: 0}
-  playerInventory: {fileID: 0}
-  currentPrefab: {fileID: 0}
+  currentPrefab: {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509,
+    type: 3}
 --- !u!1 &7364320300005801528
 GameObject:
   m_ObjectHideFlags: 0
