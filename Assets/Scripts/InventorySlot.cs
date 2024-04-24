@@ -50,7 +50,7 @@ public class InventorySlot : NetworkBehaviour
             Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
             Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
             GameObject item = Instantiate(cubePrefab, instantiatePos, instantiateRot);
-            //item.GetComponent<ItemObject>().Use();
+            item.GetComponent<ItemObject>().Use();
 
             CmdSpawnCube();
         }
@@ -82,6 +82,7 @@ public class InventorySlot : NetworkBehaviour
             Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
             Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
             GameObject item = Instantiate(cubePrefab, instantiatePos, instantiateRot);
+            item.GetComponent<ItemObject>().Use();
         }
 
 
