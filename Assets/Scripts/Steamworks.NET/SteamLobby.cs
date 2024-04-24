@@ -58,6 +58,9 @@ public class SteamLobby : MonoBehaviour
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
     {
         SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
+
+        string name = SteamFriends.GetPersonaName();
+        SteamLobbyUi.instance.playerUi.Add(name);
     }
 
     private void OnLobbyEntered(LobbyEnter_t callback)
@@ -74,8 +77,7 @@ public class SteamLobby : MonoBehaviour
         hostButton.SetActive(false);
 
 
-        string name = SteamFriends.GetPersonaName();
-        SteamLobbyUi.instance.playerUi.Add(name);
+        
     }
     
 
