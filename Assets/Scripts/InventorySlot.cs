@@ -15,7 +15,9 @@ public class InventorySlot : NetworkBehaviour
 
 	public Camera playerCAm;
 
-	private void Start()
+    public GameObject cubePrefab;
+
+    private void Start()
 	{
 		itemImage = transform.GetChild(0).GetComponent<Image>();
 		itemNumberText = transform.GetComponentInChildren<TMP_Text>();
@@ -47,7 +49,7 @@ public class InventorySlot : NetworkBehaviour
 		{
             Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
             Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+            GameObject item = Instantiate(cubePrefab, instantiatePos, instantiateRot);
             //item.GetComponent<ItemObject>().Use();
 
             CmdSpawnCube();
@@ -79,7 +81,7 @@ public class InventorySlot : NetworkBehaviour
         {
             Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
             Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-            GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+            GameObject item = Instantiate(cubePrefab, instantiatePos, instantiateRot);
         }
 
 
