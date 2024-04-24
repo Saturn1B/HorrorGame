@@ -55,7 +55,7 @@ public class SteamLobby : NetworkBehaviour
 
         SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
 
-        lobbyNames.Add(SteamFriends.GetPersonaName());
+        //lobbyNames.Add(SteamFriends.GetPersonaName());
         /*string name = SteamFriends.GetPersonaName();
         lobbyNames.Add(name);*/
     }
@@ -93,7 +93,7 @@ public class SteamLobby : NetworkBehaviour
 
         }*/
 
-        lobbyNames.Add(SteamFriends.GetPersonaName());
+        //lobbyNames.Add(SteamFriends.GetPersonaName());
 
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey); 
         networkManager.networkAddress = hostAddress;
