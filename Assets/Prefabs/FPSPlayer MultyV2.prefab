@@ -1212,6 +1212,7 @@ GameObject:
   - component: {fileID: 7261634589032958007}
   - component: {fileID: 8690153469111303553}
   - component: {fileID: 1269420553614668806}
+  - component: {fileID: 3799857598298196772}
   m_Layer: 0
   m_Name: FPSPlayer MultyV2
   m_TagString: Player
@@ -1466,6 +1467,21 @@ MonoBehaviour:
   syncInterval: 0
   cubePrefab: {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509,
     type: 3}
+--- !u!114 &3799857598298196772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342106431650556681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144e03a6b13766644ac9c955a4e1a4f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &8690847106272721590
 GameObject:
   m_ObjectHideFlags: 0

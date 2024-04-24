@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SteamLobbyUi : MonoBehaviour
+public class SteamLobbyUi : NetworkBehaviour
 {
     public static SteamLobbyUi instance;
 
@@ -28,9 +28,11 @@ public class SteamLobbyUi : MonoBehaviour
 
             Debug.Log(" I'm host");
 
-            for (int i = 0; i < playerUi.Count; i++)
+            if (SteamManager.Initialized)
             {
-                namePlayerTexts[i].text = playerUi[i];
+                string playerName = SteamFriends.GetPersonaName();
+                Debug.Log("Player Name: " + playerName);
+               
             }
         }
         else//other
@@ -47,6 +49,21 @@ public class SteamLobbyUi : MonoBehaviour
         }
 
         
+    }
+
+    public void AddPlayerName(string playerName)
+    {
+        playerUi.Add(playerName);
+        UpdatePlayerNamesUI();
+    }
+
+    private void UpdatePlayerNamesUI()
+    {
+        // Mettre à jour l'interface utilisateur (UI) pour afficher les pseudonymes des joueurs
+        Debug.Log("Player Names Updated: " + playerUi.Count);
+
+        // Ici, vous pouvez appeler une fonction pour mettre à jour l'UI avec la liste des pseudonymes
+        // UIManager.Instance.UpdatePlayerList(playerNames.ToList());
     }
 
     private void StartGameClicked()

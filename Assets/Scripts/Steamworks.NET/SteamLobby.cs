@@ -4,7 +4,7 @@ using Steamworks;
 using System;
 using System.Collections.Generic;
 
-public class SteamLobby : NetworkBehaviour
+public class SteamLobby : MonoBehaviour
 {
     private NetworkManager networkManager;
 
