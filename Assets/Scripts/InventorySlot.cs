@@ -40,11 +40,19 @@ public class InventorySlot : NetworkBehaviour
 
 		//Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
 		//Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-        //GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
-        //item.GetComponent<ItemObject>().Use();
+		//GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+		//item.GetComponent<ItemObject>().Use();
 
-		if(isLocalPlayer)
-			CmdSpawn();
+		if (isLocalPlayer)
+		{
+            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+            GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
+            item.GetComponent<ItemObject>().Use();
+
+            CmdSpawn(item);
+        }
+        
 
         /*if (itemNumber <= 0)
 		{
@@ -53,14 +61,11 @@ public class InventorySlot : NetworkBehaviour
 		}*/
 	}
 
-    [Command]
-    private void CmdSpawn()
+	[Command]
+	private void CmdSpawn(GameObject obj)
     {
-        Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-        Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-        GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
-
-        NetworkServer.Spawn(item);
+        
+        NetworkServer.Spawn(obj);
 	}
 
 
