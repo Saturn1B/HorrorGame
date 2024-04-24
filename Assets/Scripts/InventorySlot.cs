@@ -40,11 +40,6 @@ public class InventorySlot : NetworkBehaviour
 
 		AddItemNumber(-1);
 
-		//Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
-		//Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
-		//GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
-		//item.GetComponent<ItemObject>().Use();
-
 		if (isLocalPlayer)
 		{
             Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
