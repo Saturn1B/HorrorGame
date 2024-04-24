@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 762020633208238037}
   - component: {fileID: 5052935840006980973}
   - component: {fileID: 7753308724464867349}
+  - component: {fileID: 5994232455400199960}
+  - component: {fileID: 5792622849290158745}
   m_Layer: 0
   m_Name: FPSPlayer
   m_TagString: Player
@@ -110,7 +112,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7753308724464867349
 MonoBehaviour:
@@ -130,9 +132,39 @@ MonoBehaviour:
   moveSpeed: 10
   sprintSpeed: 20
   crouchSpeed: 2
+  stunSpeed: 1
   jumpHeight: 3
   standingHeight: 2
   crouchingHeight: 0.3
+--- !u!114 &5994232455400199960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342106431650556681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9490d3a720a8a849885dd7dec736c4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReach: 4
+--- !u!114 &5792622849290158745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342106431650556681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b699eceb56c224a82f2a93997f5ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 0}
+  selected: {r: 1, g: 1, b: 1, a: 1}
+  unselected: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+  itemText: {fileID: 0}
 --- !u!1 &8690847106272721590
 GameObject:
   m_ObjectHideFlags: 0
