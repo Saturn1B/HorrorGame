@@ -48,9 +48,9 @@ public class InventorySlot : NetworkBehaviour
             Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
             Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
             GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
-            item.GetComponent<ItemObject>().Use();
+            //item.GetComponent<ItemObject>().Use();
 
-            CmdSpawnCube(item);
+            CmdSpawnCube();
         }
         
 
@@ -62,22 +62,24 @@ public class InventorySlot : NetworkBehaviour
 	}
 
     [Command]
-    void CmdSpawnCube(GameObject obj)
+    void CmdSpawnCube()
     {
         if (!isLocalPlayer)
         {
             
         }
 
-        RpcSpawnCube(obj);
+        RpcSpawnCube();
     }
 
     [ClientRpc]
-    void RpcSpawnCube(GameObject obj)
+    void RpcSpawnCube()
     {
         if (!isLocalPlayer)
         {
-            GameObject cube = Instantiate(obj);
+            Vector3 instantiatePos = playerCAm.transform.position + playerCAm.transform.forward;
+            Quaternion instantiateRot = playerCAm.transform.parent.transform.rotation;
+            GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
         }
 
 
