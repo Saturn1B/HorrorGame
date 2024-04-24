@@ -4,7 +4,7 @@ using Steamworks;
 using System;
 using System.Collections.Generic;
 
-public class SteamLobby : MonoBehaviour
+public class SteamLobby : NetworkBehaviour
 {
     private NetworkManager networkManager;
 
@@ -18,7 +18,9 @@ public class SteamLobby : MonoBehaviour
 
     private const string HostAddressKey = "host";
 
-    public List<string> lobbyNames = new List<string>();
+    //public List<string> lobbyNames = new List<string>();
+
+    private SyncList<string> lobbyNames = new SyncList<string>();
 
 
     private void Start()
@@ -52,17 +54,14 @@ public class SteamLobby : MonoBehaviour
 
         SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
 
-
-        string name = SteamFriends.GetPersonaName();
-        lobbyNames.Add(name);
+        lobbyNames.Add(SteamFriends.GetPersonaName());
+        /*string name = SteamFriends.GetPersonaName();
+        lobbyNames.Add(name);*/
     }
 
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
     {
-        SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
-
-        string name = SteamFriends.GetPersonaName();
-        SteamLobbyUi.instance.playerUi.Add(name);
+        SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);        
     }
 
     private void OnLobbyEntered(LobbyEnter_t callback)
@@ -87,10 +86,6 @@ public class SteamLobby : MonoBehaviour
             // Récupérer le pseudonyme du membre
             string memberName = SteamFriends.GetFriendPersonaName(memberId);
 
-            // Afficher ou utiliser le pseudonyme récupéré
-            Debug.Log("Player joined: " + memberName);
-
-            // Vous pouvez ajouter ces noms à une liste ou à l'interface utilisateur comme vous le souhaitez
             //SteamLobbyUi.instance.playerUi.Add(memberName);
             lobbyNames.Add(memberName);
         }
