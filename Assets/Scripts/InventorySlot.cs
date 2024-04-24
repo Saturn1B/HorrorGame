@@ -50,7 +50,7 @@ public class InventorySlot : NetworkBehaviour
             GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
             item.GetComponent<ItemObject>().Use();
 
-            CmdSpawn(item);
+            CmdSpawnCube(item);
         }
         
 
@@ -61,15 +61,32 @@ public class InventorySlot : NetworkBehaviour
 		}*/
 	}
 
-	[Command]
-	private void CmdSpawn(GameObject obj)
+    [Command]
+    void CmdSpawnCube(GameObject obj)
     {
-        
-        NetworkServer.Spawn(obj);
-	}
+        if (!isLocalPlayer)
+        {
+            
+        }
+
+        RpcSpawnCube(obj);
+    }
+
+    [ClientRpc]
+    void RpcSpawnCube(GameObject obj)
+    {
+        if (!isLocalPlayer)
+        {
+            GameObject cube = Instantiate(obj);
+        }
 
 
-	public void AddItemNumber(int value)
+    }
+
+
+
+
+    public void AddItemNumber(int value)
 	{
 		itemNumber += value;
 		if(itemNumber >= 1)
