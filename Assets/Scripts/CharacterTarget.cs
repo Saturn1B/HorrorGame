@@ -10,16 +10,20 @@ public class CharacterTarget : NetworkBehaviour
 {
 	private Transform playerCamera;
 	private PlayerInventory playerInventory;
+	private CharacterMovement characterMovement;
 	[SerializeField] private int playerReach;
 
 	private void Start()
 	{
 		playerCamera = GetComponentInChildren<Camera>().transform;
 		playerInventory = GetComponentInChildren<PlayerInventory>();
+		characterMovement = GetComponent<CharacterMovement>();
 	}
 
 	private void Update()
 	{
+		if (characterMovement.GetPlayerState() == PlayerState.RAT) return;
+
 		RaycastHit hit;
 
 		if(Physics.Raycast(playerCamera.position, playerCamera.forward, out hit, playerReach))
