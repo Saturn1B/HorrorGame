@@ -14,15 +14,19 @@ public class PlayerInventory : MonoBehaviour
 	private InventorySlot selectedSlot;
 	private int slotIndex;
 
+	private CharacterMovement characterMovement;
 
 	private void Start()
     {
-        inventorySlots = inventoryPanel.GetComponentsInChildren<InventorySlot>();
+		characterMovement = GetComponent<CharacterMovement>();
+		inventorySlots = inventoryPanel.GetComponentsInChildren<InventorySlot>();
 		SetSelectedSlot(0);
     }
 
 	private void Update()
 	{
+		if (characterMovement.GetPlayerState() == PlayerState.RAT) return;
+
 		if (Input.GetAxis("Mouse ScrollWheel") > 0f)
 		{
 			slotIndex = (slotIndex + 1) >= inventorySlots.Length ? 0 : slotIndex + 1;

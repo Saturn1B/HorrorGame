@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
+public enum PlayerState
+{
+    NORMAL,
+    RAT
+}
+
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
@@ -36,6 +42,8 @@ public class CharacterMovement : MonoBehaviour
 
     private bool canMove = true;
 
+    private PlayerState _playerState = PlayerState.NORMAL;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -47,23 +55,56 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
-        HandleMouseLook();
+		switch (_playerState)
+		{
+			case PlayerState.NORMAL:
+                HandleMouseLook();
 
-        if (!canMove)
-        {
-            velocity.y -= gravity * Time.deltaTime;
-            characterController.Move(velocity * Time.deltaTime);
+                if (!canMove)
+                {
+                    velocity.y -= gravity * Time.deltaTime;
+                    characterController.Move(velocity * Time.deltaTime);
 
-            return;
-        }
+                    return;
+                }
 
-        HandleMovement();
-        HandleCrouch();
+                HandleMovement();
+                HandleCrouch();
+                break;
+			case PlayerState.RAT:
+                HandleMouseLook();
+
+                if (!canMove)
+                {
+                    velocity.y -= gravity * Time.deltaTime;
+                    characterController.Move(velocity * Time.deltaTime);
+
+                    return;
+                }
+
+                HandleMovement();
+                break;
+		}
     }
+
+    public PlayerState GetPlayerState()
+	{
+        return _playerState;
+	}
 
     private void HandleMovement()
     {
-        float currentSpeed = isStun ? stunSpeed : isCrouching ? crouchSpeed : Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
+        float currentSpeed = moveSpeed;
+
+        switch (_playerState)
+		{
+			case PlayerState.NORMAL:
+                currentSpeed = isStun ? stunSpeed : isCrouching ? crouchSpeed : Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
+                break;
+			case PlayerState.RAT:
+                currentSpeed = sprintSpeed;
+				break;
+		}
 
         float horizontal = Input.GetAxis("Horizontal") * currentSpeed;
         float vertical = Input.GetAxis("Vertical") * currentSpeed;
@@ -145,6 +186,8 @@ public class CharacterMovement : MonoBehaviour
 
     public void StunPlayer()
 	{
+        if (_playerState == PlayerState.RAT) return;
+
         StartCoroutine(Stun());
 	}
 
