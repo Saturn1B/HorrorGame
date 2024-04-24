@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.Events;
 
 public enum PlayerState
 {
@@ -44,7 +45,14 @@ public class CharacterMovement : MonoBehaviour
 
     private PlayerState _playerState = PlayerState.NORMAL;
 
-    private void Start()
+    [HideInInspector] public UnityEvent _onRatTransformation;
+
+	private void Awake()
+	{
+        if (_onRatTransformation == null) _onRatTransformation = new UnityEvent();
+	}
+
+	private void Start()
     {
         characterController = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
@@ -213,5 +221,14 @@ public class CharacterMovement : MonoBehaviour
             yield return null;
         }
         playerCamera.fieldOfView = baseFOV;
+	}
+
+    [ContextMenu("Rat Transformation")]
+    public void RatTransformation()
+	{
+        _playerState = PlayerState.RAT;
+        _onRatTransformation.Invoke();
+        characterController.height = crouchingHeight;
+        transform.localScale = new Vector3(1, .5f, 1);
 	}
 }

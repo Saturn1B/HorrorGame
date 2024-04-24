@@ -14,7 +14,7 @@ public class Throwable : ItemObject
 
 	public override void Use(CharacterTarget usingPlayer)
 	{
-		Vector3 throwDirection = usingPlayer.GetComponentInChildren<Camera>().transform.forward * 10 + Vector3.up * 3;
+		Vector3 throwDirection = usingPlayer.GetComponentInChildren<Camera>().transform.forward * 12 + Vector3.up * 3;
 		rb.AddForce(throwDirection + usingPlayer.transform.GetComponent<CharacterController>().velocity * .75f, ForceMode.Impulse);
 		thrown = true;
 	}

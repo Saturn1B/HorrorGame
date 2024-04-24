@@ -16,9 +16,13 @@ public class PlayerInventory : MonoBehaviour
 
 	private CharacterMovement characterMovement;
 
+	public GameObject[] prefabs;
+
 	private void Start()
     {
 		characterMovement = GetComponent<CharacterMovement>();
+		characterMovement._onRatTransformation.AddListener(HideInventory);
+
 		inventorySlots = inventoryPanel.GetComponentsInChildren<InventorySlot>();
 		SetSelectedSlot(0);
     }
@@ -106,5 +110,14 @@ public class PlayerInventory : MonoBehaviour
 
 		itemText.gameObject.SetActive(false);
 		itemText.color = Color.white - new Color(0, 0, 0, 1f);
+	}
+
+	private void HideInventory()
+	{
+		foreach (InventorySlot slot in inventorySlots)
+		{
+			slot.AddItemNumber(-slot.GetItemNumber());
+		}
+		inventoryPanel.gameObject.SetActive(false);
 	}
 }

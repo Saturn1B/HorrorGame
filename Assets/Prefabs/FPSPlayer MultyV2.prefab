@@ -344,9 +344,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   itemDescription: {fileID: 0}
-  playerCAm: {fileID: 1020143624784532481}
-  cubePrefab: {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509,
-    type: 3}
+  playerCamera: {fileID: 0}
+  playerInventory: {fileID: 0}
+  currentPrefab: {fileID: 0}
 --- !u!1 &3102939515574175869
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,9 +821,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   itemDescription: {fileID: 0}
-  playerCAm: {fileID: 1020143624784532481}
-  cubePrefab: {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509,
-    type: 3}
+  playerCamera: {fileID: 0}
+  playerInventory: {fileID: 0}
+  currentPrefab: {fileID: 0}
 --- !u!1 &7364320300005801528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1338,9 @@ MonoBehaviour:
   jumpHeight: 3
   standingHeight: 2
   crouchingHeight: 0.3
+  _onRatTransformation:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1315608683600654941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1370,6 +1373,9 @@ MonoBehaviour:
   selected: {r: 1, g: 1, b: 1, a: 1}
   unselected: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   itemText: {fileID: 295049366909719254}
+  prefabs:
+  - {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509, type: 3}
+  - {fileID: 3079131772612418971, guid: 8875e7ec616fe0e42a995424f2ae167b, type: 3}
 --- !u!114 &1789352188930557356
 MonoBehaviour:
   m_ObjectHideFlags: 0

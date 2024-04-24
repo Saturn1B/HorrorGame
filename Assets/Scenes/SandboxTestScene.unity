@@ -3767,6 +3767,16 @@ PrefabInstance:
       propertyPath: inventoryPanel
       value: 
       objectReference: {fileID: 109901365}
+    - target: {fileID: 7753308724464867349, guid: 8a3dbe6c9b734944abd621efab6ae197,
+        type: 3}
+      propertyPath: ratHeight
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7753308724464867349, guid: 8a3dbe6c9b734944abd621efab6ae197,
+        type: 3}
+      propertyPath: crouchingHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8342106431650556681, guid: 8a3dbe6c9b734944abd621efab6ae197,
         type: 3}
       propertyPath: m_Name
