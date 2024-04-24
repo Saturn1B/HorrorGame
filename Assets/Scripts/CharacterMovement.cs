@@ -15,6 +15,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float crouchSpeed;
+    [SerializeField] private float stunSpeed;
     [SerializeField] private float jumpHeight;
 
     [Title("Crouch")]
@@ -30,6 +31,7 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private float gravity = 9.81f;
     private bool isCrouching;
+    private bool isStun;
     private float crouchTransitionSpeed = .1f;
 
     private bool canMove = true;
@@ -61,7 +63,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        float currentSpeed = isCrouching ? crouchSpeed : Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
+        float currentSpeed = isStun ? stunSpeed : isCrouching ? crouchSpeed : Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
 
         float horizontal = Input.GetAxis("Horizontal") * currentSpeed;
         float vertical = Input.GetAxis("Vertical") * currentSpeed;
@@ -107,7 +109,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !isStun)
         {
             StartCoroutine(CrouchStand());
         }
@@ -140,4 +142,33 @@ public class CharacterMovement : MonoBehaviour
 
         return Mathf.Clamp(angle, min, max);
     }
+
+    public void StunPlayer()
+	{
+        StartCoroutine(Stun());
+	}
+
+    private IEnumerator Stun()
+	{
+        isStun = true;
+        float baseFOV = playerCamera.fieldOfView;
+
+        while(playerCamera.fieldOfView > 30)
+		{
+            playerCamera.fieldOfView -= .3f;
+            yield return null;
+		}
+        playerCamera.fieldOfView = 30;
+
+        yield return new WaitForSeconds(5f);
+
+        isStun = false;
+
+        while (playerCamera.fieldOfView < baseFOV)
+        {
+            playerCamera.fieldOfView += .3f;
+            yield return null;
+        }
+        playerCamera.fieldOfView = baseFOV;
+	}
 }

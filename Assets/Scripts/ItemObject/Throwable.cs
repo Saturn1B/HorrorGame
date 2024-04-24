@@ -23,7 +23,10 @@ public class Throwable : ItemObject
 	{
 		if (thrown)
 		{
-			Debug.Log(rb.velocity.magnitude);
+			if (collision.transform.CompareTag("Player"))
+			{
+				collision.transform.GetComponent<CharacterMovement>().StunPlayer();
+			}
 			thrown = false;
 		}
 	}

@@ -130,6 +130,7 @@ MonoBehaviour:
   moveSpeed: 10
   sprintSpeed: 20
   crouchSpeed: 2
+  stunSpeed: 1
   jumpHeight: 3
   standingHeight: 2
   crouchingHeight: 0.3
