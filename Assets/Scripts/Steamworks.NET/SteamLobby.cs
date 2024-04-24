@@ -70,6 +70,28 @@ public class SteamLobby : MonoBehaviour
             return;
         }
 
+        // Récupérer l'ID du lobby
+        CSteamID lobbyId = new CSteamID(callback.m_ulSteamIDLobby);
+
+        // Récupérer le nombre de membres dans le lobby
+        int numMembers = SteamMatchmaking.GetNumLobbyMembers(lobbyId);
+
+        // Parcourir tous les membres du lobby
+        for (int i = 0; i < numMembers; i++)
+        {
+            // Récupérer l'ID Steam du membre
+            CSteamID memberId = SteamMatchmaking.GetLobbyMemberByIndex(lobbyId, i);
+
+            // Récupérer le pseudonyme du membre
+            string memberName = SteamFriends.GetFriendPersonaName(memberId);
+
+            // Afficher ou utiliser le pseudonyme récupéré
+            Debug.Log("Player joined: " + memberName);
+
+            // Vous pouvez ajouter ces noms à une liste ou à l'interface utilisateur comme vous le souhaitez
+            SteamLobbyUi.instance.playerUi.Add(memberName);
+        }
+
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey); 
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
