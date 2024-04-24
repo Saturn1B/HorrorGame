@@ -166,7 +166,7 @@ Material:
     - _FoamCutoff: 1
     - _FoamSpeed: 0.1
     - _Foam_Scale: 80
-    - _GeneralWaveSpeed: 0.1
+    - _GeneralWaveSpeed: 0.05
     - _Intensity: 1
     - _OpaqueCullMode: 2
     - _QueueControl: 1
