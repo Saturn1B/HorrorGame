@@ -29,7 +29,7 @@ public class CubeSpawner : NetworkBehaviour
         }
 
         
-        //RpcSpawnCube();
+        RpcSpawnCube();
         // Informer les clients de l'apparition du cube
 
 
@@ -40,8 +40,9 @@ public class CubeSpawner : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
+            GameObject cube = Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
 
+            NetworkServer.Spawn(cube);
         }
         
         
