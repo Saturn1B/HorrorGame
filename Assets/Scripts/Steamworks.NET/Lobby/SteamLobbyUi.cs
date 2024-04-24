@@ -21,13 +21,17 @@ public class SteamLobbyUi : MonoBehaviour
             
             startGameButt.SetActive(true);
             startGameButt.GetComponent<Button>().onClick.AddListener(StartGameClicked);
-            //playerUi.Add(SteamFriends.GetPersonaName());
+            playerUi.Add(SteamFriends.GetPersonaName());
+
+            Debug.Log(" I'm host");
 
         }
         else//other
         {
             //playerUi.Add(SteamFriends.GetPersonaName());
             startGameButt.SetActive(false);
+
+            Debug.Log(" I'm client ");
         }
 
         /*for (int i = 0; i < playerUi.Count; i++)
