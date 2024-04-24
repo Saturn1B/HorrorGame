@@ -41,7 +41,7 @@ public class IKFootSolver : MonoBehaviour
 				direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
 				newPosition = info.point * direction;
 				newPosition.y = info.point.y;
-				Debug.Log($"hit object: {info.transform.name} {Mathf.FloorToInt(newPosition.y)}");
+				//Debug.Log($"hit object: {info.transform.name} {Mathf.FloorToInt(newPosition.y)}");
 			}
 		}
 		if (lerp < 1)

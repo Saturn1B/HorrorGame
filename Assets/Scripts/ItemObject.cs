@@ -7,7 +7,7 @@ public class ItemObject : MonoBehaviour
 	public ItemScriptable itemDescription;
 
 	//Launch when object in inventory is used
-	public virtual void Use()
+	public virtual void Use(CharacterTarget usingPlayer)
 	{
 
 	}

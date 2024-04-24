@@ -36,7 +36,7 @@ public class InventorySlot : MonoBehaviour
 		Vector3 instantiatePos = Camera.main.transform.position + Camera.main.transform.forward;
 		Quaternion instantiateRot = Camera.main.transform.parent.transform.rotation;
 		GameObject item = Instantiate(itemDescription.itemPrefab, instantiatePos, instantiateRot);
-		item.GetComponent<ItemObject>().Use();
+		item.GetComponent<ItemObject>().Use(FindObjectOfType<CharacterTarget>());
 
 		if (itemNumber <= 0)
 		{
