@@ -55,7 +55,7 @@ public class SteamLobby : NetworkBehaviour
 
         SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
 
-        //lobbyNames.Add(SteamFriends.GetPersonaName());
+        lobbyNames.Add(SteamFriends.GetPersonaName());
         /*string name = SteamFriends.GetPersonaName();
         lobbyNames.Add(name);*/
     }
@@ -69,36 +69,29 @@ public class SteamLobby : NetworkBehaviour
     {
         if(NetworkServer.active)
         {
-            // Récupérer l'ID du lobby
-            CSteamID lobbyId = new CSteamID(callback.m_ulSteamIDLobby);
-
-            // Récupérer le nombre de membres dans le lobby
-            int numMembers = SteamMatchmaking.GetNumLobbyMembers(lobbyId);
-
-            // Parcourir tous les membres du lobby
-            for (int i = 0; i < numMembers; i++)
-            {
-                // Récupérer l'ID Steam du membre
-                CSteamID memberId = SteamMatchmaking.GetLobbyMemberByIndex(lobbyId, i);
-
-                // Récupérer le pseudonyme du membre
-                string memberName = SteamFriends.GetFriendPersonaName(memberId);
-
-                // Ajouter le pseudonyme à la liste synchronisée (côté serveur)
-                lobbyNames.Add(memberName);
-            }
+            return;
         }
-        else if (NetworkClient.active)
+
+        // Récupérer l'ID du lobby
+        CSteamID lobbyId = new CSteamID(callback.m_ulSteamIDLobby);
+
+        // Récupérer le nombre de membres dans le lobby
+        int numMembers = SteamMatchmaking.GetNumLobbyMembers(lobbyId);
+
+        // Parcourir tous les membres du lobby
+        for (int i = 0; i < numMembers; i++)
         {
-            // Rien à faire côté client dans cette méthode
-            // Les données seront synchronisées automatiquement par Mirror
-        }
-        else
-        {
-            Debug.LogWarning("OnLobbyEntered called but neither NetworkServer nor NetworkClient are active.");
-        }
+            // Récupérer l'ID Steam du membre
+            CSteamID memberId = SteamMatchmaking.GetLobbyMemberByIndex(lobbyId, i);
 
-        
+            // Récupérer le pseudonyme du membre
+            string memberName = SteamFriends.GetFriendPersonaName(memberId);
+
+            //SteamLobbyUi.instance.playerUi.Add(memberName);
+            lobbyNames.Add(memberName);
+
+
+        }
 
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey); 
         networkManager.networkAddress = hostAddress;
