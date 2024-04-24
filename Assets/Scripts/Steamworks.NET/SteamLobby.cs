@@ -21,7 +21,7 @@ public class SteamLobby : NetworkBehaviour
     //public List<string> lobbyNames = new List<string>();
 
     
-    public SyncList<string> lobbyNames = new SyncList<string>();
+    private SyncList<string> lobbyNames = new SyncList<string>();
 
 
     private void Start()
