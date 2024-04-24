@@ -13,8 +13,8 @@ public class CubeSpawner : NetworkBehaviour
         if (isLocalPlayer && Input.GetKeyDown(KeyCode.E))
         {
             GameObject cube = Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
-            //CmdSpawnCube();
-            NetworkServer.Spawn(cube);
+            CmdSpawnCube();
+            //;
         }
     }
 
@@ -23,13 +23,13 @@ public class CubeSpawner : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-           Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
+            GameObject cube = Instantiate(cubePrefab, transform.position + transform.forward * 2f, Quaternion.identity);
 
-            
+            NetworkServer.Spawn(cube);
         }
 
         
-        RpcSpawnCube();
+        //RpcSpawnCube();
         // Informer les clients de l'apparition du cube
 
 
