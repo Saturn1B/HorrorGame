@@ -89,7 +89,7 @@ public class SteamLobby : MonoBehaviour
             Debug.Log("Player joined: " + memberName);
 
             // Vous pouvez ajouter ces noms à une liste ou à l'interface utilisateur comme vous le souhaitez
-            SteamLobbyUi.instance.playerUi.Add(memberName);
+            //SteamLobbyUi.instance.playerUi.Add(memberName);
         }
 
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey); 
