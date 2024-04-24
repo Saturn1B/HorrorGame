@@ -18,7 +18,6 @@ public class SteamLobby : NetworkBehaviour
 
     private const string HostAddressKey = "host";
 
-    public SteamLobbyUi steamLobbyUi;
 
     private void Start()
     {
@@ -51,12 +50,9 @@ public class SteamLobby : NetworkBehaviour
 
         SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
 
-        steamLobbyUi = GameObject.Find("Canvas").GetComponent<SteamLobbyUi>(); 
-        if (steamLobbyUi != null)
-        {
-            string name = SteamFriends.GetPersonaName();
-            steamLobbyUi.playerUi.Add(name);
-        }
+
+        string name = SteamFriends.GetPersonaName();
+        SteamLobbyUi.instance.playerUi.Add(name);
     }
 
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)

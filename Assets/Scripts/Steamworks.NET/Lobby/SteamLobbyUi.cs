@@ -9,7 +9,10 @@ using UnityEngine.UI;
 
 public class SteamLobbyUi : MonoBehaviour
 {
+    public static SteamLobbyUi instance;
+
     public List<string> playerUi = new List<string>();
+
     public List<TextMeshProUGUI> namePlayerTexts;    
 
     public GameObject startGameButt;
@@ -25,6 +28,10 @@ public class SteamLobbyUi : MonoBehaviour
 
             Debug.Log(" I'm host");
 
+            for (int i = 0; i < playerUi.Count; i++)
+            {
+                namePlayerTexts[i].text = playerUi[i];
+            }
         }
         else//other
         {
@@ -32,12 +39,14 @@ public class SteamLobbyUi : MonoBehaviour
             startGameButt.SetActive(false);
 
             Debug.Log(" I'm client ");
+
+            for (int i = 0; i < playerUi.Count; i++)
+            {
+                namePlayerTexts[i].text = playerUi[i];
+            }
         }
 
-        /*for (int i = 0; i < playerUi.Count; i++)
-        {
-            namePlayerTexts[i].text = playerUi[i];
-        }*/
+        
     }
 
     private void StartGameClicked()
