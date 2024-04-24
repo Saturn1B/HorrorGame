@@ -20,8 +20,8 @@ public class SteamLobby : NetworkBehaviour
 
     //public List<string> lobbyNames = new List<string>();
 
-    [SerializeField]
-    private SyncList<string> lobbyNames = new SyncList<string>();
+    
+    public SyncList<string> lobbyNames = new SyncList<string>();
 
 
     private void Start()
