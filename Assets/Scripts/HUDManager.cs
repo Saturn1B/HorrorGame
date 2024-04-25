@@ -42,6 +42,7 @@ public class HUDManager : MonoBehaviour
 		if (indication.activeSelf)
 		{
 			indication.SetActive(false);
+			if (indicationText == null) indicationText = indication.GetComponent<TMP_Text>();
 			indicationText.text = "";
 		}
 	}
