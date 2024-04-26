@@ -7,6 +7,9 @@ public class PlayerCamera : NetworkBehaviour
     public Camera playerCam;
     public GameObject canvas;
     public PlayerRole roleScripts;
+    public CharacterMovement characterMovement;
+    public CharacterTarget characterTarget;
+    public GameObject canvasName;
 
     public void Start()
     {
@@ -24,6 +27,9 @@ public class PlayerCamera : NetworkBehaviour
 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+
+                characterMovement.enabled = false;
+                characterTarget.enabled = false;
             }
             else
             {
@@ -35,6 +41,9 @@ public class PlayerCamera : NetworkBehaviour
 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+
+                characterMovement.enabled = false;
+                characterTarget.enabled = false;
             }
             
         }
@@ -50,7 +59,9 @@ public class PlayerCamera : NetworkBehaviour
                 playerCam = playerCamera;
                 canvas.SetActive(true);
 
-                roleScripts.enabled = true;
+                //roleScripts.enabled = true;
+                characterMovement.enabled = true;
+                characterTarget.enabled = true;
             }
             else
             {
@@ -59,7 +70,9 @@ public class PlayerCamera : NetworkBehaviour
                 if (playerCamera != null)
                     playerCamera.enabled = false;
 
-                roleScripts.enabled = true;
+                //roleScripts.enabled = true;
+                characterMovement.enabled = true;
+                characterTarget.enabled = true;
             }
         }
         
