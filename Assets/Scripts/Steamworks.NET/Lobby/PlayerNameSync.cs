@@ -2,6 +2,7 @@ using Mirror;
 using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerNameSunc : NetworkBehaviour
@@ -10,6 +11,8 @@ public class PlayerNameSunc : NetworkBehaviour
     public string displayName;
 
     private CSteamID steamID;
+
+    public TextMeshProUGUI textName;
 
     public override void OnStartLocalPlayer()
     {
@@ -31,6 +34,7 @@ public class PlayerNameSunc : NetworkBehaviour
     {
         // Mettre à jour l'affichage du pseudonyme dans l'interface utilisateur, par exemple
         Debug.Log("Display Name Changed: " + newName);
+        textName.text = newName;
     }
 
     [Server]
