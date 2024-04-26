@@ -21,6 +21,26 @@ public class PlayerNameSunc : NetworkBehaviour
         steamID = SteamUser.GetSteamID();
         // Récupérer le pseudonyme Steam du joueur local
         displayName = SteamFriends.GetPersonaName();
+
+        CmdChangeDisplayName(displayName);
+    }
+
+    [Command]
+    private void CmdChangeDisplayName(string newName)
+    {
+        // Vérifier si le joueur a les droits nécessaires pour changer de pseudonyme (à implémenter)
+        // ...
+        // Mettre à jour le pseudonyme sur le serveur
+        displayName = newName;
+        textName.text = newName;
+    }
+
+    [ClientRpc]
+    private void RpcUpdateDisplayName(string newName)
+    {
+        // Mettre à jour le pseudonyme sur tous les clients
+        displayName = newName;
+        textName.text = newName;
     }
 
     public override void OnStartClient()
@@ -46,7 +66,7 @@ public class PlayerNameSunc : NetworkBehaviour
             Debug.Log("Friend's Display Name: " + newName);
         }
 
-        textName.text = newName;
+        //textName.text = newName;
     }
 
     [Server]
