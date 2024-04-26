@@ -40,11 +40,8 @@ public class PlayerNameSunc : NetworkBehaviour
     private void RpcUpdateDisplayName(string newName)
     {
         // Mettre à jour le pseudonyme sur tous les clients
-        if (isLocalPlayer) 
-        {
-            displayName = newName;
-            textName.text = newName;
-        }
+        displayName = newName;
+        textName.text = newName;
     }
 
     public override void OnStartClient()
