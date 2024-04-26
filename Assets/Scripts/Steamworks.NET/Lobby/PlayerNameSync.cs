@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerNameSunc : NetworkBehaviour
+public class PlayerNameSync : NetworkBehaviour
 {
     [SyncVar(hook = nameof(OnDisplayNameChanged))]
     public string displayName;
@@ -22,18 +22,16 @@ public class PlayerNameSunc : NetworkBehaviour
         // Récupérer le pseudonyme Steam du joueur local
         displayName = SteamFriends.GetPersonaName();
 
+        // Mettre à jour le pseudonyme sur le serveur
         CmdChangeDisplayName(displayName);
     }
 
     [Command]
     private void CmdChangeDisplayName(string newName)
     {
-        // Vérifier si le joueur a les droits nécessaires pour changer de pseudonyme (à implémenter)
-        // ...
         // Mettre à jour le pseudonyme sur le serveur
         displayName = newName;
-        textName.text = newName;
-
+        RpcUpdateDisplayName(newName);
     }
 
     [ClientRpc]
@@ -53,21 +51,9 @@ public class PlayerNameSunc : NetworkBehaviour
 
     private void OnDisplayNameChanged(string oldName, string newName)
     {
-        // Mettre à jour l'affichage du pseudonyme dans l'interface utilisateur, par exemple
-        //Debug.Log("Display Name Changed: " + newName);
-
-        if (isLocalPlayer)
-        {
-            // Afficher le pseudonyme du joueur local
-            Debug.Log("My Display Name: " + newName);
-        }
-        else
-        {
-            // Afficher le pseudonyme du joueur distant
-            Debug.Log("Friend's Display Name: " + newName);
-        }
-
-        //textName.text = newName;
+        // Mettre à jour l'affichage du pseudonyme dans l'interface utilisateur
+        Debug.Log("Display Name Changed: " + newName);
+        textName.text = newName;
     }
 
     [Server]
