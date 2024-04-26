@@ -22,6 +22,7 @@ public class PlayerNameSunc : NetworkBehaviour
         // Récupérer le pseudonyme Steam du joueur local
         displayName = SteamFriends.GetPersonaName();
 
+        textName.text  = displayName;
         CmdChangeDisplayName(displayName);
     }
 
@@ -31,8 +32,12 @@ public class PlayerNameSunc : NetworkBehaviour
         // Vérifier si le joueur a les droits nécessaires pour changer de pseudonyme (à implémenter)
         // ...
         // Mettre à jour le pseudonyme sur le serveur
-        displayName = newName;
-        textName.text = newName;
+        if (isLocalPlayer)
+        {
+            displayName = newName;
+            textName.text = newName;
+        }
+
     }
 
     [ClientRpc]
