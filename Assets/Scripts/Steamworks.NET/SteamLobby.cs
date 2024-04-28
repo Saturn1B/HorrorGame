@@ -70,30 +70,8 @@ public class SteamLobby : NetworkBehaviour
         if(NetworkServer.active)
         {
             return;
-        }
+        }       
 
-        /*// Récupérer l'ID du lobby
-        CSteamID lobbyId = new CSteamID(callback.m_ulSteamIDLobby);
-
-        // Récupérer le nombre de membres dans le lobby
-        int numMembers = SteamMatchmaking.GetNumLobbyMembers(lobbyId);
-
-        // Parcourir tous les membres du lobby
-        for (int i = 0; i < numMembers; i++)
-        {
-            // Récupérer l'ID Steam du membre
-            CSteamID memberId = SteamMatchmaking.GetLobbyMemberByIndex(lobbyId, i);
-
-            // Récupérer le pseudonyme du membre
-            string memberName = SteamFriends.GetFriendPersonaName(memberId);
-
-            //SteamLobbyUi.instance.playerUi.Add(memberName);
-            lobbyNames.Add(memberName);
-
-
-        }*/
-
-        //lobbyNames.Add(SteamFriends.GetPersonaName());
 
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey); 
         networkManager.networkAddress = hostAddress;
