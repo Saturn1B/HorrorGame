@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -619,8 +619,8 @@ MonoBehaviour:
   sendRate: 60
   autoStartServerBuild: 0
   autoConnectClientBuild: 0
-  offlineScene: Assets/Scenes/MultiOffline.unity
-  onlineScene: Assets/Scenes/MultiLobby.unity
+  offlineScene: Assets/00_Scenes/MultiOffline.unity
+  onlineScene: Assets/00_Scenes/MultiLobby.unity
   transport: {fileID: 736648357}
   networkAddress: localhost
   maxConnections: 100
