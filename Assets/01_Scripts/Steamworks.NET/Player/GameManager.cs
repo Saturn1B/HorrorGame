@@ -2,6 +2,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public struct StartGameMessage : NetworkMessage
@@ -15,16 +16,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this; 
+        instance = this;
     }
 
     public static Action OnGameStarted;
 
     private List<PlayerRole> playerlist = new List<PlayerRole>();
 
+    public GameObject canvasIpostor;
+    public TextMeshProUGUI textMeshProUGUI;
 
-
-    IEnumerator Start() 
+    IEnumerator Start()
     {
         NetworkClient.RegisterHandler<StartGameMessage>(OnStartGameMessage);
 
@@ -42,16 +44,18 @@ public class GameManager : MonoBehaviour
 
         playerlist[rand].role = PlayerRoles.Impostor;
 
+        textMeshProUGUI.text = playerlist[rand].role.ToString();
+
         NetworkServer.SendToReady(new StartGameMessage());
     }
 
     public void AddPlayer(PlayerRole player)
     {
-        playerlist.Add(player); 
+        playerlist.Add(player);
     }
 
     private void OnStartGameMessage(StartGameMessage msg)//En gros ici la fonction pour le start de la game apres le check que tt les joeueur sont bien co 
     {
-        OnGameStarted?.Invoke();    
+        OnGameStarted?.Invoke();
     }
 }

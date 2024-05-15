@@ -13,12 +13,12 @@ public class BeiginUi : MonoBehaviour
    
     void Start()
     {
-        GameManager.OnGameStarted += OnGameStart;
+        //GameManager.OnGameStarted += OnGameStart;
     }
 
     private void OnDestroy()
     {
-        GameManager.OnGameStarted -= OnGameStart; 
+        //GameManager.OnGameStarted -= OnGameStart; 
     }
 
     private void OnGameStart()
