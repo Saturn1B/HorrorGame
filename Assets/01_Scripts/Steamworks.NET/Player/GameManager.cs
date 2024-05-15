@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : NetworkBehaviour
 {
@@ -12,8 +13,41 @@ public class GameManager : NetworkBehaviour
     }
 
     private Dictionary<NetworkConnectionToClient, PlayerRole> playerRoles = new Dictionary<NetworkConnectionToClient, PlayerRole>();
+    private bool rolesAssigned = false;
+    private bool temp = false;
 
-    public void AssignRoles()
+    public void FixedUpdate()
+    {
+        if(!temp)
+        {
+            foreach (var connPair in NetworkServer.connections)
+            {
+                if (connPair.Value != null && !connPair.Value.isReady)
+                {
+                    Debug.Log("honon");
+                    return;
+                }
+            }
+
+            Debug.Log("ho oui ");
+
+            if (SceneManager.GetActiveScene().name == "MultiScene" && !rolesAssigned)
+            {
+                AssignRoles();
+            }
+
+            temp = true;
+        }
+    }
+
+    public bool AreAllClientsReady()
+    {
+        
+
+        return true;
+    }
+
+    private void AssignRoles()
     {
         List<PlayerRole> availableRoles = new List<PlayerRole> { PlayerRole.Defender, PlayerRole.Defender }; // Deux rôles de défenseurs
         bool attackerAssigned = false;
@@ -41,5 +75,7 @@ public class GameManager : NetworkBehaviour
                 conn.identity.GetComponent<Player>().RpcAssignRole(role);
             }
         }
+
+        rolesAssigned = true;
     }
 }
