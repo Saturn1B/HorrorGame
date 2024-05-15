@@ -3,6 +3,7 @@ using UnityEngine;
 using Steamworks;
 using System;
 using System.Collections.Generic;
+using Telepathy;
 
 public class SteamLobby : NetworkBehaviour
 {
@@ -10,7 +11,7 @@ public class SteamLobby : NetworkBehaviour
 
     public GameObject hostButton = null;
 
-    
+    public GameObject canvas;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> gameLobbyJoinRequested;
@@ -70,8 +71,12 @@ public class SteamLobby : NetworkBehaviour
         if(NetworkServer.active)
         {
             return;
-        }       
+        }
 
+        if (isClient)
+        {
+            canvas.SetActive(false);
+        }
 
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey); 
         networkManager.networkAddress = hostAddress;
