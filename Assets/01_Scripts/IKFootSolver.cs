@@ -11,7 +11,7 @@ public class IKFootSolver : MonoBehaviour
 	[SerializeField] private Vector3 footOffset;
 
 	[SerializeField] private IKFootSolver otherFoot1, otherFoot2;
-	[SerializeField] private SpiderMovement spiderMovement;
+	[SerializeField] private AIMovement spiderMovement;
 
 	Vector3 newPosition;
 	Vector3 currentPosition;
@@ -23,7 +23,7 @@ public class IKFootSolver : MonoBehaviour
 
 	private void Start()
 	{
-		spiderMovement = FindObjectOfType<SpiderMovement>();
+		spiderMovement = FindObjectOfType<AIMovement>();
 		footOffset += new Vector3(transform.localPosition.x, 0, 0);
 		currentPosition = newPosition = oldPosition = transform.position;
 		lerp = 1;
@@ -50,7 +50,7 @@ public class IKFootSolver : MonoBehaviour
 			footPosition.y = Mathf.Clamp(Mathf.Sin(lerp * Mathf.PI) * stepHeight, newPosition.y, newPosition.y + stepHeight);
 
 			currentPosition = footPosition;
-			lerp += Time.deltaTime * (speed * (spiderMovement.speed / 5));
+			lerp += Time.deltaTime * (speed * (spiderMovement.agent.speed / 5));
 		}
 		else
 		{
