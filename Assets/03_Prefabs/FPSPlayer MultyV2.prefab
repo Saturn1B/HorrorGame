@@ -1748,7 +1748,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2036,6 +2036,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Character_Pirate_Captain_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475208091542795818, guid: 293f570d22293e846bcb2b540d598f7f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8634025787569288463, guid: 293f570d22293e846bcb2b540d598f7f,
         type: 3}
