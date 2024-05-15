@@ -18,7 +18,7 @@ public class GameManager : NetworkBehaviour
 
     public void FixedUpdate()
     {
-        if(!temp)
+        if(!temp)//Check if all players are here & if is good go assign Roles
         {
             foreach (var connPair in NetworkServer.connections)
             {
@@ -40,39 +40,47 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    public bool AreAllClientsReady()
-    {
-        
-
-        return true;
-    }
-
     private void AssignRoles()
     {
-        List<PlayerRole> availableRoles = new List<PlayerRole> { PlayerRole.Defender, PlayerRole.Defender }; // Deux rôles de défenseurs
-        bool attackerAssigned = false;
+        List<NetworkConnectionToClient> players = new List<NetworkConnectionToClient>();
 
+        // Récupérer toutes les connexions des joueurs
         foreach (var connPair in NetworkServer.connections)
         {
             if (connPair.Value != null && connPair.Value.identity != null)
             {
-                NetworkConnectionToClient conn = connPair.Value;
-                PlayerRole role;
+                players.Add(connPair.Value);
+            }
+        }
 
-                if (!attackerAssigned)
-                {
-                    role = PlayerRole.Attacker;
-                    attackerAssigned = true;
-                }
-                else
-                {
-                    role = availableRoles[Random.Range(0, availableRoles.Count)];
-                    availableRoles.Remove(role);
-                }
+        // Vérifier si au moins un joueur est présent
+        if (players.Count == 0)
+        {
+            Debug.LogWarning("No players connected.");
+            return;
+        }
 
-                playerRoles.Add(conn, role);
-                // Envoyez les informations sur le rôle au client
-                conn.identity.GetComponent<Player>().RpcAssignRole(role);
+        // Choisir aléatoirement un joueur comme attaquant
+        int attackerIndex = Random.Range(0, players.Count);
+        NetworkConnectionToClient attackerConn = players[attackerIndex];
+
+        // Attribuer le rôle d'attaquant à ce joueur
+        playerRoles.Add(attackerConn, PlayerRole.Attacker);
+        players.RemoveAt(attackerIndex); // Retirer l'attaquant de la liste des joueurs
+
+        // Attribuer le rôle de défenseur aux autres joueurs
+        foreach (var conn in players)
+        {
+            playerRoles.Add(conn, PlayerRole.Defender);
+        }
+
+        // Envoyer les informations sur les rôles à tous les clients
+        foreach (var conn in NetworkServer.connections)
+        {
+            if (conn.Value != null && conn.Value.identity != null)
+            {
+                PlayerRole role = playerRoles[conn.Value];
+                conn.Value.identity.GetComponent<Player>().RpcAssignRole(role);
             }
         }
 
