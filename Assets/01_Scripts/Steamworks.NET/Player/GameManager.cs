@@ -1,61 +1,33 @@
 using Mirror;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public struct StartGameMessage : NetworkMessage
+public class GameManager : NetworkBehaviour
 {
-
-}
-
-public class GameManager : MonoBehaviour
-{
-    public static GameManager instance;
-
-    private void Awake()
+    public enum PlayerRole
     {
-        instance = this;
+        Attacker,
+        Defender,
+        // Ajoutez plus de rôles au besoin
     }
 
-    public static Action OnGameStarted;
+    private Dictionary<NetworkConnectionToClient, PlayerRole> playerRoles = new Dictionary<NetworkConnectionToClient, PlayerRole>();
 
-    private List<PlayerRole> playerlist = new List<PlayerRole>();
-
-    public GameObject canvasIpostor;
-    public TextMeshProUGUI textMeshProUGUI;
-
-    IEnumerator Start()
+    public void AssignRoles()
     {
-        NetworkClient.RegisterHandler<StartGameMessage>(OnStartGameMessage);
-
-        while (!NetworkServer.active)
+        // Assignez des rôles aux joueurs, par exemple aléatoirement
+        List<PlayerRole> availableRoles = new List<PlayerRole> { PlayerRole.Attacker, PlayerRole.Defender };
+        foreach (var connPair in NetworkServer.connections)
         {
-            yield return null;
+            if (connPair.Value != null && connPair.Value.identity != null)
+            {
+                NetworkConnectionToClient conn = connPair.Value;
+                PlayerRole randomRole = availableRoles[Random.Range(0, availableRoles.Count)];
+                playerRoles.Add(conn, randomRole);
+                availableRoles.Remove(randomRole);
+                // Envoyez les informations sur le rôle au client
+                conn.identity.GetComponent<Player>().RpcAssignRole(randomRole);
+            }
         }
-
-        /*while(playerlist.Count != NetworkServer.connections.Count || playerlist.TrueForAll(x => x.connectionToClient.isReady))
-        {
-            yield return null;  
-        }*/
-
-        int rand = UnityEngine.Random.Range(0, playerlist.Count);
-
-        playerlist[rand].role = PlayerRoles.Impostor;
-
-        textMeshProUGUI.text = playerlist[rand].role.ToString();
-
-        NetworkServer.SendToReady(new StartGameMessage());
-    }
-
-    public void AddPlayer(PlayerRole player)
-    {
-        playerlist.Add(player);
-    }
-
-    private void OnStartGameMessage(StartGameMessage msg)//En gros ici la fonction pour le start de la game apres le check que tt les joeueur sont bien co 
-    {
-        OnGameStarted?.Invoke();
     }
 }

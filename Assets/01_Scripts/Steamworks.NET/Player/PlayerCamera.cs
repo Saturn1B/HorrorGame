@@ -6,7 +6,7 @@ public class PlayerCamera : NetworkBehaviour
 {
     public Camera playerCam;
     public GameObject canvas;
-    public PlayerRole roleScripts;
+
     public CharacterMovement characterMovement;
     public CharacterTarget characterTarget;
     public GameObject canvasName;
