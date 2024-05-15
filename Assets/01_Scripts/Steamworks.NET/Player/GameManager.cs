@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        while(playerlist.Count != NetworkServer.connections.Count || playerlist.TrueForAll(x => x.connectionToClient.isReady))
+        /*while(playerlist.Count != NetworkServer.connections.Count || playerlist.TrueForAll(x => x.connectionToClient.isReady))
         {
             yield return null;  
-        }
+        }*/
 
         int rand = UnityEngine.Random.Range(0, playerlist.Count);
 
