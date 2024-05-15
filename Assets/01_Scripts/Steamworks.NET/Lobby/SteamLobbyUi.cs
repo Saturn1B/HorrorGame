@@ -17,6 +17,8 @@ public class SteamLobbyUi : NetworkBehaviour
 
     public GameObject startGameButt;
 
+
+
     private void Start()
     {
         if (NetworkServer.active)//host

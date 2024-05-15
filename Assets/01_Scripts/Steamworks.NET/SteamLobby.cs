@@ -12,6 +12,7 @@ public class SteamLobby : NetworkBehaviour
     public GameObject hostButton = null;
 
     public GameObject canvas;
+    public GameObject canvasHud; 
 
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> gameLobbyJoinRequested;
@@ -83,9 +84,10 @@ public class SteamLobby : NetworkBehaviour
         networkManager.StartClient();
 
         hostButton.SetActive(false);
+        canvasHud.SetActive(false);
 
 
-        
+
     }
     
 

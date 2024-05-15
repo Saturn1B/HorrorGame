@@ -14,6 +14,8 @@ public class LobbyPlayers : NetworkBehaviour
 
     public List<GameObject> playersObj = new List<GameObject>();
 
+    
+
     public void Awake()
     {
         for (int i = 0; i < players.Length; i++)
