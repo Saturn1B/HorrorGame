@@ -15,18 +15,30 @@ public class GameManager : NetworkBehaviour
 
     public void AssignRoles()
     {
-        // Assignez des rôles aux joueurs, par exemple aléatoirement
-        List<PlayerRole> availableRoles = new List<PlayerRole> { PlayerRole.Attacker, PlayerRole.Defender };
+        List<PlayerRole> availableRoles = new List<PlayerRole> { PlayerRole.Defender, PlayerRole.Defender }; // Deux rôles de défenseurs
+        bool attackerAssigned = false;
+
         foreach (var connPair in NetworkServer.connections)
         {
             if (connPair.Value != null && connPair.Value.identity != null)
             {
                 NetworkConnectionToClient conn = connPair.Value;
-                PlayerRole randomRole = availableRoles[Random.Range(0, availableRoles.Count)];
-                playerRoles.Add(conn, randomRole);
-                availableRoles.Remove(randomRole);
+                PlayerRole role;
+
+                if (!attackerAssigned)
+                {
+                    role = PlayerRole.Attacker;
+                    attackerAssigned = true;
+                }
+                else
+                {
+                    role = availableRoles[Random.Range(0, availableRoles.Count)];
+                    availableRoles.Remove(role);
+                }
+
+                playerRoles.Add(conn, role);
                 // Envoyez les informations sur le rôle au client
-                conn.identity.GetComponent<Player>().RpcAssignRole(randomRole);
+                conn.identity.GetComponent<Player>().RpcAssignRole(role);
             }
         }
     }
