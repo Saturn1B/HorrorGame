@@ -4309,6 +4309,7 @@ MonoBehaviour:
   syncInterval: 0
   hostButton: {fileID: 1917249963}
   canvas: {fileID: 1541770323}
+  canvasHud: {fileID: 1541770323}
 --- !u!114 &736648362
 MonoBehaviour:
   m_ObjectHideFlags: 0
