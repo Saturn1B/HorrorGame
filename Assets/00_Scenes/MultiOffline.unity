@@ -4210,8 +4210,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1541770327}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &736648357
@@ -4276,7 +4275,7 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 3079131772612418971, guid: 8875e7ec616fe0e42a995424f2ae167b, type: 3}
   - {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509, type: 3}
-  - {fileID: 8342106431650556681, guid: a938b8b2a18222145b0f043ffe516be8, type: 3}
+  - {fileID: 3983801540624070959, guid: 3950c74f7910894489b87611e6f2f3d8, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -4291,7 +4290,7 @@ MonoBehaviour:
     deliveryTimeEmaDuration: 2
   evaluationMethod: 0
   evaluationInterval: 3
-  timeInterpolationGui: 0
+  timeInterpolationGui: 1
 --- !u!114 &736648361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10823,7 +10822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -10873,7 +10872,7 @@ RectTransform:
   - {fileID: 1495130588}
   - {fileID: 1334814150}
   - {fileID: 1039239126}
-  m_Father: {fileID: 736648356}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15034,6 +15033,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1683797185}
+  - {fileID: 1541770327}
   - {fileID: 736648356}
   - {fileID: 1555351470}
   - {fileID: 66475778}

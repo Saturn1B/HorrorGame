@@ -6,6 +6,10 @@ public class Player : NetworkBehaviour
     [SyncVar]
     private GameManager.PlayerRole playerRole;
 
+
+    public GameObject imEvil;
+    public GameObject imGood;
+
     // Méthode RPC pour attribuer le rôle côté client
     [ClientRpc]
     public void RpcAssignRole(GameManager.PlayerRole role)
@@ -15,6 +19,16 @@ public class Player : NetworkBehaviour
 
         // Ici vous pouvez ajouter le code pour ajuster le gameplay en fonction du rôle
         // Par exemple, activer ou désactiver des fonctionnalités spécifiques au rôle
+        if (role.ToString() == "Attacker")
+        {
+            imEvil.SetActive(true);
+            imGood.SetActive(false);
+        }
+        else
+        {
+            imEvil.SetActive(false);
+            imGood.SetActive(true);
+        }
     }
 
     // Ajoutez d'autres méthodes ou propriétés selon les besoins

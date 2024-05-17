@@ -12661,7 +12661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1850246277
 Transform:
   m_ObjectHideFlags: 0
@@ -12694,6 +12694,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   cavasLoad: {fileID: 1924883439}
+  imEvil: {fileID: 0}
+  imGood: {fileID: 0}
 --- !u!114 &1850246279
 MonoBehaviour:
   m_ObjectHideFlags: 0

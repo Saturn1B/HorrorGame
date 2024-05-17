@@ -10,6 +10,7 @@ public class SceneLoader : NetworkBehaviour
     private List<NetworkConnection> readyPlayers = new List<NetworkConnection>();
 
     public GameObject cavasLoad;
+    
 
     // Appelé par le client lorsque le chargement est terminé
     public void PlayerLoaded(NetworkConnection conn)
