@@ -6,6 +6,8 @@ public class QuestManager : MonoBehaviour
 {
     [SerializeField] public List<Transform> questsPos = new List<Transform>();
     [SerializeField] public List<GameObject> quests = new List<GameObject>();
+    //[SerializeField] public List<Transform> Torches = new List<Transform>();
+
 
     [SerializeField] public List<Transform> bottlePos = new List<Transform>();
     [SerializeField] public GameObject bottlePrefab;
