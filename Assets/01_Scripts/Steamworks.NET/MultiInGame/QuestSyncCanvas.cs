@@ -17,12 +17,16 @@ public class QuestSyncCanvas : NetworkBehaviour
         }
 
         UpdateText("Pitot");
+   
+    }
 
+    public void Update()
+    {
         int i = 0;
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            
+
             if (isLocalPlayer)
             {
                 i++;
@@ -30,7 +34,6 @@ public class QuestSyncCanvas : NetworkBehaviour
             }
 
         }
-       
     }
 
     public void UpdateText(string newText)
