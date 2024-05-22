@@ -13,7 +13,7 @@ public class SteamLobbyUi : NetworkBehaviour
 
     public List<string> playerUi = new List<string>();
 
-    public List<TextMeshProUGUI> namePlayerTexts;    
+    public List<TextMeshProUGUI> namePlayerTexts;
 
     public GameObject startGameButt;
 
@@ -23,14 +23,14 @@ public class SteamLobbyUi : NetworkBehaviour
     {
         if (NetworkServer.active)//host
         {
-            
+
             startGameButt.SetActive(true);
             startGameButt.GetComponent<Button>().onClick.AddListener(StartGameClicked);
             playerUi.Add(SteamFriends.GetPersonaName());
 
             Debug.Log(" I'm host");
 
-            
+
         }
         else//other
         {
@@ -39,13 +39,13 @@ public class SteamLobbyUi : NetworkBehaviour
 
             Debug.Log(" I'm client ");
 
-            
+
         }
 
-        
+
     }
 
-    
+
 
     public void AddPlayerName(string playerName)
     {
@@ -64,8 +64,8 @@ public class SteamLobbyUi : NetworkBehaviour
 
     private void StartGameClicked()
     {
-        NetworkManager.singleton.ServerChangeScene("MultiScene");
-        
+        //NetworkManager.singleton.ServerChangeScene("MultiScene");
+        CustomNetworkManager.Instance.ActivateLoadedSceneManually();
         //NetworkServer.SendToReady()
     }
 }
