@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &331014736240251736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1087775277056914291}
+  m_Layer: 0
+  m_Name: CamHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1087775277056914291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331014736240251736}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 571068440561274272}
+  m_Father: {fileID: 5529568125609801427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370578779740369732
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +372,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278a182aafde8ef479a5c9bce84b358c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemDescription: {fileID: 0}
+  currentPrefab: {fileID: 0}
 --- !u!1 &3102939515574175869
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +847,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278a182aafde8ef479a5c9bce84b358c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemDescription: {fileID: 0}
+  currentPrefab: {fileID: 0}
 --- !u!1 &7364320300005801528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,6 +1239,7 @@ GameObject:
   - component: {fileID: 7753308724464867349}
   - component: {fileID: 1315608683600654941}
   - component: {fileID: 3608334995652883496}
+  - component: {fileID: 3092801430014318297}
   m_Layer: 0
   m_Name: FPSPlayer
   m_TagString: Player
@@ -1219,7 +1260,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 571068440561274272}
+  - {fileID: 1087775277056914291}
   - {fileID: 6785511979974174120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1320,7 +1361,10 @@ MonoBehaviour:
   stunSpeed: 1
   jumpHeight: 3
   standingHeight: 2
-  crouchingHeight: 0.3
+  crouchingHeight: 1
+  _onRatTransformation:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1315608683600654941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,6 +1377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9490d3a720a8a849885dd7dec736c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   playerReach: 4
 --- !u!114 &3608334995652883496
 MonoBehaviour:
@@ -1350,6 +1397,24 @@ MonoBehaviour:
   selected: {r: 1, g: 1, b: 1, a: 1}
   unselected: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   itemText: {fileID: 295049366909719254}
+  prefabs: []
+--- !u!114 &3092801430014318297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342106431650556681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87aca65f072fd104ca8217a8c8d0591b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: 1
+  amplitude: 0.001
+  frequency: 10
+  cam: {fileID: 571068440561274272}
+  camHolder: {fileID: 1087775277056914291}
 --- !u!1 &8690847106272721590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,11 +1443,11 @@ Transform:
   m_GameObject: {fileID: 8690847106272721590}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5529568125609801427}
+  m_Father: {fileID: 1087775277056914291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1020143624784532481
 Camera:

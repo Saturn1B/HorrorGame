@@ -3942,26 +3942,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5092979551041060006, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092979551041060006, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092979551041060006, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092979551041060006, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5529568125609801427, guid: 8a3dbe6c9b734944abd621efab6ae197,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4012,55 +3992,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5792622849290158745, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: itemText
-      value: 
-      objectReference: {fileID: 950229045}
-    - target: {fileID: 5792622849290158745, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: inventoryPanel
-      value: 
-      objectReference: {fileID: 109901365}
-    - target: {fileID: 7753308724464867349, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: ratHeight
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7753308724464867349, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: crouchingHeight
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8342106431650556681, guid: 8a3dbe6c9b734944abd621efab6ae197,
         type: 3}
       propertyPath: m_Name
       value: FPSPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8342106431650556681, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8969917448089462218, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8969917448089462218, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8969917448089462218, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8969917448089462218, guid: 8a3dbe6c9b734944abd621efab6ae197,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
