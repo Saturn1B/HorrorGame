@@ -5,12 +5,15 @@ using TMPro;  // Assurez-vous d'avoir TextMeshPro si vous l'utilisez
 
 public class QuestSyncCanvas : NetworkBehaviour
 {
-    [SerializeField] private TextMeshProUGUI sharedText;  // Utilisez TextMesh si vous utilisez TextMeshPro
+    [SerializeField] private TextMeshProUGUI sharedTextA;  // Utilisez TextMesh si vous utilisez TextMeshPro
+    [SerializeField] private TextMeshProUGUI sharedTextB;
+    [SerializeField] private TextMeshProUGUI sharedTextC;
+    [SerializeField] private TextMeshProUGUI sharedTextD;
     [SyncVar(hook = nameof(OnTextChanged))] private string syncedText;
 
     void Start()
     {
-        if (sharedText == null)
+        if (sharedTextA == null)
         {
             Debug.LogError("SharedText is not assigned!");
             return;
@@ -20,19 +23,12 @@ public class QuestSyncCanvas : NetworkBehaviour
    
     }
 
-    private int i = 0;
-
-    public void Update()
+    public void QuestA()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("Avant");
-            i++;
-            UpdateText("ouiii mais non" + i.ToString());
-            Debug.Log("Apres");
-        }
-        
+        UpdateText("Quest A Complete");
     }
+
+
 
     public void UpdateText(string newText)
     {
@@ -54,6 +50,6 @@ public class QuestSyncCanvas : NetworkBehaviour
 
     void OnTextChanged(string oldText, string newText)
     {
-        sharedText.text = newText;
+        sharedTextA.text = newText;
     }
 }
