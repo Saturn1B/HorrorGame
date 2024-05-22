@@ -20,20 +20,18 @@ public class QuestSyncCanvas : NetworkBehaviour
    
     }
 
+    private int i = 0;
+
     public void Update()
     {
-        int i = 0;
-
         if (Input.GetKeyDown(KeyCode.K))
         {
-
-            if (isLocalPlayer)
-            {
-                i++;
-                UpdateText("ouiii mais non" + i);
-            }
-
+            Debug.Log("Avant");
+            i++;
+            UpdateText("ouiii mais non" + i.ToString());
+            Debug.Log("Apres");
         }
+        
     }
 
     public void UpdateText(string newText)
