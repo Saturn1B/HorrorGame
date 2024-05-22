@@ -233,74 +233,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1001 &111283260
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 28.20341
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0000009536743
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -38.458614
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 5f42b6fc7ca328447997dabeb8f4c4c8,
-        type: 3}
-      propertyPath: m_Name
-      value: SM_araignee_blockout (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5f42b6fc7ca328447997dabeb8f4c4c8, type: 3}
 --- !u!1 &170168848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,7 +958,7 @@ MonoBehaviour:
   stepDistance: 4
   stepHeight: 2
   speed: 4
-  footOffset: {x: 0, y: 0, z: 8}
+  footOffset: {x: -1, y: 0, z: 2}
   otherFoot1: {fileID: 1188262831}
   otherFoot2: {fileID: 486367107}
   spiderMovement: {fileID: 0}
@@ -1102,7 +1034,7 @@ MonoBehaviour:
   stepDistance: 4
   stepHeight: 2
   speed: 4
-  footOffset: {x: -1, y: 0, z: -4}
+  footOffset: {x: -1, y: 0, z: -1}
   otherFoot1: {fileID: 2030932439}
   otherFoot2: {fileID: 1110500252}
   spiderMovement: {fileID: 0}
@@ -1160,7 +1092,7 @@ MonoBehaviour:
   stepDistance: 4
   stepHeight: 2
   speed: 4
-  footOffset: {x: -2, y: 0, z: 5}
+  footOffset: {x: -1.5, y: 0, z: 1}
   otherFoot1: {fileID: 660191258}
   otherFoot2: {fileID: 351356196}
   spiderMovement: {fileID: 0}
@@ -1268,7 +1200,7 @@ MonoBehaviour:
   stepDistance: 4
   stepHeight: 2
   speed: 4
-  footOffset: {x: 2, y: 0, z: -2}
+  footOffset: {x: 2, y: 0, z: 0}
   otherFoot1: {fileID: 1110500252}
   otherFoot2: {fileID: 2030932439}
   spiderMovement: {fileID: 0}
@@ -1382,7 +1314,7 @@ MonoBehaviour:
   stepDistance: 4
   stepHeight: 2
   speed: 4
-  footOffset: {x: 2, y: 0, z: 5}
+  footOffset: {x: 2, y: 0, z: 1}
   otherFoot1: {fileID: 486367107}
   otherFoot2: {fileID: 1188262831}
   spiderMovement: {fileID: 0}
@@ -2096,7 +2028,7 @@ MonoBehaviour:
   stepDistance: 4
   stepHeight: 2
   speed: 4
-  footOffset: {x: -2, y: 0, z: -1}
+  footOffset: {x: -1.5, y: 0, z: 0}
   otherFoot1: {fileID: 533267326}
   otherFoot2: {fileID: 480322866}
   spiderMovement: {fileID: 0}
@@ -2241,7 +2173,7 @@ MonoBehaviour:
   stepDistance: 4
   stepHeight: 2
   speed: 4
-  footOffset: {x: 0, y: 0, z: 7}
+  footOffset: {x: 1, y: 0, z: 2}
   otherFoot1: {fileID: 351356196}
   otherFoot2: {fileID: 660191258}
   spiderMovement: {fileID: 0}
@@ -2326,7 +2258,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2761082c7dc2b614392d66e8f87713e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2853,7 +2785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1520362367
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3660,7 +3592,7 @@ MonoBehaviour:
   stepDistance: 4
   stepHeight: 2
   speed: 4
-  footOffset: {x: 1, y: 0, z: -3}
+  footOffset: {x: 1, y: 0, z: -1}
   otherFoot1: {fileID: 480322866}
   otherFoot2: {fileID: 533267326}
   spiderMovement: {fileID: 0}
@@ -4150,4 +4082,3 @@ SceneRoots:
   - {fileID: 1520362370}
   - {fileID: 2084982567}
   - {fileID: 1364882064}
-  - {fileID: 111283260}

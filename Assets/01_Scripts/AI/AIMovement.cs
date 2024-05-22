@@ -54,7 +54,7 @@ public class AIMovement : MonoBehaviour
 			{
 				Quaternion lookRotation = Quaternion.LookRotation(direction);
 				transform.rotation = lookRotation;
-				//transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+				//transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
 			}
 		}
 
@@ -238,6 +238,7 @@ public class AIMovement : MonoBehaviour
 		Gizmos.color = Color.magenta;
 		Gizmos.DrawWireSphere(transform.position, detectionRadius);
 		Gizmos.DrawWireSphere(center, range);
-		Gizmos.DrawSphere(agent.destination, 1);
+		if(agent != null)
+			Gizmos.DrawSphere(agent.destination, 1);
 	}
 }
