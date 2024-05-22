@@ -33,7 +33,15 @@ public class CharacterTarget : NetworkBehaviour
 				HUDManager.Instance.DiplayIndication($"pick up {hit.transform.GetComponent<ItemObject>().itemDescription.itemName}");
 				if (Input.GetKeyDown(KeyCode.E))
 				{
-					if (playerInventory.AddItem(hit.transform.GetComponent<ItemObject>().itemDescription))
+					if (hit.transform.GetComponent<QuestAction>())
+					{
+						hit.transform.GetComponent<QuestAction>().QuestComplet();
+
+                        Destroy(hit.transform.gameObject);
+                        CmdDestoy(hit.transform.gameObject);
+
+                    }
+					else if (playerInventory.AddItem(hit.transform.GetComponent<ItemObject>().itemDescription))
 					{
                         Destroy(hit.transform.gameObject);
 
