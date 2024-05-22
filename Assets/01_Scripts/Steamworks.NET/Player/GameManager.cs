@@ -16,6 +16,14 @@ public class GameManager : NetworkBehaviour
     private bool rolesAssigned = false;
     private bool temp = false;
 
+    // End game
+    public bool isEndGame = false;
+    public GameObject endZone;
+
+    // Start Game 
+    public bool isStarted = false;
+    public GameObject questCanvas;
+
     public void FixedUpdate()
     {
         if(!temp)//Check if all players are here & if is good go assign Roles
