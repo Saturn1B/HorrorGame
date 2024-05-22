@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Sirenix.OdinInspector;
 
 public enum MonsterState
 {
@@ -12,34 +13,37 @@ public enum MonsterState
 
 public class AIMovement : MonoBehaviour
 {
+	[Title("AI Control")]
 	[SerializeField] public NavMeshAgent agent;
 	[SerializeField] private float range;
 
 	[SerializeField] private float detectionRadius;
 
+	[SerializeField] private float chaseDetectionRange;
+
 	[SerializeField] private Transform centerPoint;
 
+	[Title("State Control")]
+	[SerializeField] private MonsterState _monsterState;
 
 	[SerializeField] private float minTime, maxTime;
-
-	[SerializeField] private MonsterState _monsterState;
 
 	[SerializeField] private float wanderSpeed, chaseSpeed, scareSpeed;
 
 	float startSearchTimer;
 	[SerializeField] float searchTimer;
 
-
-	private CharacterController[] players;
+	private List<CharacterController> players = new List<CharacterController>();
 	private CharacterController chasingPlayer;
 
 	bool scareEnd;
+	bool chaseEnd;
 
 	private void Start()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		StartCoroutine(StateTimer());
-		players = FindObjectsOfType<CharacterController>();
+		players = new List<CharacterController>(FindObjectsOfType<CharacterController>());
 		startSearchTimer = searchTimer;
 	}
 
@@ -98,16 +102,17 @@ public class AIMovement : MonoBehaviour
 
 				break;
 			case MonsterState.CHASE:
-				if (Vector3.Distance(transform.position, chasingPlayer.transform.position) <= 1)
+				if (Vector3.Distance(transform.position, chasingPlayer.transform.position) <= chaseDetectionRange)
 				{
-					//TO DO make some scary shit + kill chasing player
-					StopAllCoroutines();
-					_monsterState = MonsterState.WANDER;
-					chasingPlayer = null;
-					startSearchTimer = searchTimer;
-					agent.speed = wanderSpeed;
-					StartCoroutine(StateTimer());
+					if (!chaseEnd)
+					{
+						//TO DO make some scary shit
+						StopAllCoroutines();
+						agent.SetDestination(transform.position);
+						StartCoroutine(KillPlayer());
 
+						chaseEnd = true;
+					}
 					break;
 				}
 
@@ -165,6 +170,25 @@ public class AIMovement : MonoBehaviour
 		scareEnd = false;
 	}
 
+	private IEnumerator KillPlayer()
+	{
+		//TO DO change to killing animation instead of just waiting
+		yield return new WaitForSeconds(2f);
+
+		chasingPlayer.GetComponent<CharacterMovement>().RatTransformation();
+		players.Remove(chasingPlayer);
+
+		//TO DO change this to tp to spawn point
+		chasingPlayer.transform.position = Vector3.zero;
+
+		_monsterState = MonsterState.WANDER;
+		chasingPlayer = null;
+		startSearchTimer = searchTimer;
+		agent.speed = wanderSpeed;
+		StartCoroutine(StateTimer());
+		chaseEnd = false;
+	}
+
 	private bool RandomPoint(Vector3 center, float range, out Vector3 result)
 	{
 		Vector3 randomPoint = center + Random.insideUnitSphere * range;
@@ -210,7 +234,7 @@ public class AIMovement : MonoBehaviour
 				agent.speed = chaseSpeed;
 				break;
 			case MonsterState.SCARE:
-				chasingPlayer = players[Random.Range(0, players.Length)];
+				chasingPlayer = players[Random.Range(0, players.Count)];
 				agent.speed = scareSpeed;
 				break;
 		}
