@@ -272,6 +272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c22e7f135f6c0a4b8ec01f65fc4c1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireVFX: {fileID: 0}
+  vfxSpawnPoint: {fileID: 0}
 --- !u!1 &128534321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1229,7 @@ GameObject:
   - component: {fileID: 391277312}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
