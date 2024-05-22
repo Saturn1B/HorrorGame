@@ -53,8 +53,10 @@ public class AIMovement : MonoBehaviour
 			if(direction != Vector3.zero)
 			{
 				Quaternion lookRotation = Quaternion.LookRotation(direction);
-				transform.rotation = lookRotation;
-				//transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
+				float angle = Quaternion.Angle(transform.rotation, lookRotation);
+				float rotationSpeedFactor = Mathf.Clamp(angle / 180, .1f, 1f);
+				//transform.rotation = lookRotation;
+				transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, (Time.deltaTime * rotationSpeedFactor) / 2);
 			}
 		}
 
