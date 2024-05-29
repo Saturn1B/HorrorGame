@@ -14,58 +14,39 @@ public class ObjectStateSync : NetworkBehaviour
     private bool isObject3Found;
 
     // Méthodes pour récupérer les objets
-    public void FindObject1()
+    public void FindObject(int objectID)
     {
         if (isServer)
         {
-            isObject1Found = true;
+            SetObjectFound(objectID);
         }
         else
         {
-            CmdFindObject1();
+            CmdFindObject(objectID);
         }
     }
 
     [Command]
-    private void CmdFindObject1()
+    private void CmdFindObject(int objectID)
     {
-        isObject1Found = true;
+        SetObjectFound(objectID);
     }
 
-    public void FindObject2()
+    [Server]
+    private void SetObjectFound(int objectID)
     {
-        if (isServer)
+        switch (objectID)
         {
-            isObject2Found = true;
+            case 1:
+                isObject1Found = true;
+                break;
+            case 2:
+                isObject2Found = true;
+                break;
+            case 3:
+                isObject3Found = true;
+                break;
         }
-        else
-        {
-            CmdFindObject2();
-        }
-    }
-
-    [Command]
-    private void CmdFindObject2()
-    {
-        isObject2Found = true;
-    }
-
-    public void FindObject3()
-    {
-        if (isServer)
-        {
-            isObject3Found = true;
-        }
-        else
-        {
-            CmdFindObject3();
-        }
-    }
-
-    [Command]
-    private void CmdFindObject3()
-    {
-        isObject3Found = true;
     }
 
     // Hooks pour mettre à jour l'état sur les clients
