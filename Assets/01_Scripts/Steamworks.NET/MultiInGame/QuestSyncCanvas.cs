@@ -35,18 +35,24 @@ public class QuestSyncCanvas : NetworkBehaviour
     public void QuestA()
     {
 
-        if (isServer)
-        {
-            syncedI = syncedI++;
-            CmdUpdateI(syncedI);
-        }
-
-
         if (syncedI == 3)
         {
             UpdateTextA("Quest A Complete");
         }
         
+    }
+    public void UpdateI()
+    {
+        if (isServer)
+        {
+            syncedI++; Debug.Log(syncedI);
+        }
+        else
+        {
+            CmdUpdateI(syncedI++); Debug.Log(syncedI);
+        }
+
+        QuestA();
     }
 
     public void EndGame()
