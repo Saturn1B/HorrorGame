@@ -45,14 +45,13 @@ public class QuestSyncCanvas : NetworkBehaviour
     {
         if (isServer)
         {
-            syncedI++; Debug.Log(syncedI);
+            syncedI++;
+            Debug.Log($"Server updated syncedI to {syncedI}");
         }
         else
         {
-            CmdUpdateI(syncedI++); Debug.Log(syncedI);
+            CmdUpdateI();
         }
-
-        QuestA();
     }
 
     public void EndGame()
@@ -149,9 +148,10 @@ public class QuestSyncCanvas : NetworkBehaviour
     }
 
     [Command]
-    void CmdUpdateI(int newI)
+    void CmdUpdateI()
     {
-        syncedI = newI;
+        syncedI++;
+        Debug.Log($"CmdUpdateI called, syncedI is now {syncedI}");
     }
 
 
@@ -165,6 +165,7 @@ public class QuestSyncCanvas : NetworkBehaviour
     {
         // Here you can handle UI updates or other logic when `i` changes.
         Debug.Log($"i changed from {oldI} to {newI}");
+        QuestA();
     }
 
     void OnTextChangedD(string oldText, string newText)
