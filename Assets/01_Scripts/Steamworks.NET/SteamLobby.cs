@@ -29,6 +29,11 @@ public class SteamLobby : NetworkBehaviour
 
     private void Start()
     {
+        ForceStart();
+    }
+
+    private void ForceStart()
+	{
         Debug.LogError("Start SteamLobby");
 
         if (networkManager == null)
@@ -66,6 +71,9 @@ public class SteamLobby : NetworkBehaviour
             Debug.Log("Steam API initialized successfully.");
             if (networkManager == null)
                 networkManager = NetworkManager.singleton;
+
+            if (lobbyCreated == null)
+                ForceStart();
 
             //if (NetworkManager.singleton != null)
             //{
