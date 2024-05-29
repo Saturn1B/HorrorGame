@@ -45,8 +45,7 @@ public class QuestSyncCanvas : NetworkBehaviour
     {
         if (isServer)
         {
-            syncedI++;
-            Debug.Log($"Server updated syncedI to {syncedI}");
+            IncrementI();
         }
         else
         {
@@ -150,10 +149,13 @@ public class QuestSyncCanvas : NetworkBehaviour
     [Command]
     void CmdUpdateI()
     {
-        syncedI++;
-        Debug.Log($"CmdUpdateI called, syncedI is now {syncedI}");
+        IncrementI();
     }
-
+    void IncrementI()
+    {
+        syncedI++;
+        Debug.Log($"IncrementI called, syncedI is now {syncedI}");
+    }
 
     [Command]
     void CmdUpdateTextD(string newText)
