@@ -28,7 +28,7 @@ public class Interact : MonoBehaviour
                 Debug.Log("Quest completed !");
             }
         }
-        else
+        else if (!isFilling && progressBar.value < progressBar.maxValue)
         {
             progressBar.value = 0;
         }
