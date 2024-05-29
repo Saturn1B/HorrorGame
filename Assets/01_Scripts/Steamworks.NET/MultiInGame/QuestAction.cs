@@ -34,7 +34,7 @@ public class QuestAction : ItemObject
         {
             case QuestActive.QuestA:
                 Debug.Log("A");
-                questSyncCanvas.QuestA();
+                questSyncCanvas.UpdateI();
                 break;
             case QuestActive.QuestB:
                 Debug.Log("B");
