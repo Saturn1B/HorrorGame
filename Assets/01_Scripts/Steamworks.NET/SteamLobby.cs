@@ -14,7 +14,7 @@ public class SteamLobby : NetworkBehaviour
     public GameObject hostButton = null;
 
     public GameObject canvas;
-    public GameObject canvasHud; 
+    public GameObject canvasHud;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> gameLobbyJoinRequested;
@@ -42,7 +42,35 @@ public class SteamLobby : NetworkBehaviour
     public void HostLobby()
     {
         hostButton.SetActive(false);
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+        //SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+        if (SteamAPI.Init())
+        {
+            Debug.Log("Steam API initialized successfully.");
+            if (networkManager == null)
+                networkManager = GetComponent<NetworkManager>();
+
+            if (networkManager != null)
+            {
+                try
+                {
+                    Debug.Log($"Attempting to create lobby with maxConnections: {networkManager.maxConnections}");
+                    SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+                    Debug.Log("Lobby creation successful.");
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogError($"Exception while creating lobby: {ex.Message}\n{ex.StackTrace}");
+                }
+            }
+            else
+            {
+                Debug.LogError("networkManager is null.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Steam API initialization failed.");
+        }
     }
 
 
@@ -63,7 +91,7 @@ public class SteamLobby : NetworkBehaviour
 
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
     {
-        SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);        
+        SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
     }
 
     private void OnLobbyEntered(LobbyEnter_t callback)
@@ -78,7 +106,7 @@ public class SteamLobby : NetworkBehaviour
             canvas.SetActive(false);
         }
 
-        string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey); 
+        string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
 
