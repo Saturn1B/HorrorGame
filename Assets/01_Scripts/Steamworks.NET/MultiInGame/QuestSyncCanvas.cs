@@ -14,6 +14,8 @@ public class QuestSyncCanvas : NetworkBehaviour
     [SyncVar(hook = nameof(OnTextChangedC))] private string syncedTextC;
     [SyncVar(hook = nameof(OnTextChangedD))] private string syncedTextD;
 
+    [SyncVar(hook = nameof(OnIChanged))] private int syncedI;
+
     public bool questAfinish = false;
 
     void Start()
@@ -29,13 +31,18 @@ public class QuestSyncCanvas : NetworkBehaviour
         UpdateTextC("Find 650 barrels");
         UpdateTextD("Find 10000 barrels");
     }
-    private int i = 0;
 
     public void QuestA()
     {
-        i++;
 
-        if (i == 3)
+        if (isServer)
+        {
+            syncedI = syncedI++;
+            CmdUpdateI(syncedI);
+        }
+
+
+        if (syncedI == 3)
         {
             UpdateTextA("Quest A Complete");
         }
@@ -136,9 +143,22 @@ public class QuestSyncCanvas : NetworkBehaviour
     }
 
     [Command]
+    void CmdUpdateI(int newI)
+    {
+        syncedI = newI;
+    }
+
+
+    [Command]
     void CmdUpdateTextD(string newText)
     {
         syncedTextD = newText;
+    }
+
+    void OnIChanged(int oldI, int newI)
+    {
+        // Here you can handle UI updates or other logic when `i` changes.
+        Debug.Log($"i changed from {oldI} to {newI}");
     }
 
     void OnTextChangedD(string oldText, string newText)
