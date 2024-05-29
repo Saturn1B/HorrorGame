@@ -14,8 +14,8 @@ public class QuestSyncCanvas : NetworkBehaviour
     [SyncVar(hook = nameof(OnTextChangedC))] private string syncedTextC;
     [SyncVar(hook = nameof(OnTextChangedD))] private string syncedTextD;
 
-    [SyncVar(hook = nameof(OnValueChanged))]
-    private int syncedValue;
+    [SyncVar(hook = nameof(OnValueChanged))] private int syncedValue;
+
 
     public bool questAfinish = false;
 
@@ -47,28 +47,29 @@ public class QuestSyncCanvas : NetworkBehaviour
     ///                 syncedValue
     /// </summary>
 
-    // Hook qui sera appelé lorsque syncedValue change
-    private void OnValueChanged(int oldValue, int newValue)
+    public void UpdateChanged(int newText)
     {
-        Debug.Log($"Value changed from {oldValue} to {newValue}");
-        // Mettez à jour l'interface utilisateur ou d'autres composants ici
-    }
-
-    private void Update()
-    {
-        if (isLocalPlayer && Input.GetKeyDown(KeyCode.A))
+        if (isServer)
         {
-            // Appel de la méthode pour incrémenter la valeur
-            CmdIncrementValue();
+            syncedValue = newText;
+        }
+        else
+        {
+            CmdUpdateInt(newText);
         }
     }
 
     [Command]
-    private void CmdIncrementValue()
+    void CmdUpdateInt(int newText)
     {
-        // Incrémentation de la valeur côté serveur
-        syncedValue++;
+        syncedValue = newText;
     }
+
+    void OnValueChanged(int oldText, int newText)
+    {
+        syncedValue = newText;
+    }
+
     /// <summary>
     /// 
     /// </summary>

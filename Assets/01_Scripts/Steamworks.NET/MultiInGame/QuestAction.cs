@@ -21,7 +21,8 @@ public class QuestAction : ItemObject
     [SerializeField]
     private QuestSyncCanvas questSyncCanvas;
 
-    
+    [SerializeField]
+    private int barrelid;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class QuestAction : ItemObject
             case QuestActive.QuestA:
                 Debug.Log("A");
                 //questSyncCanvas.QuestA();
-                //questSyncCanvas.UpdateI();
+                questSyncCanvas.UpdateChanged(barrelid);
                 break;
             case QuestActive.QuestB:
                 Debug.Log("B");
