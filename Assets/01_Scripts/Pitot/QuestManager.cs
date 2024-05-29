@@ -1,49 +1,51 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour
+public class QuestSpawner : MonoBehaviour
 {
-    [SerializeField] public List<Transform> questsPos = new List<Transform>();
-    [SerializeField] public List<GameObject> quests = new List<GameObject>();
-    //[SerializeField] public List<Transform> Torches = new List<Transform>();
-
-
-    [SerializeField] public List<Transform> bottlePos = new List<Transform>();
-    [SerializeField] public GameObject bottlePrefab;
-    [SerializeField] int bottleNumber;
-
-    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
+    // Liste des points de spawn
+    public List<Transform> spawnPoints;
+    // Liste des prefabs des quêtes
+    public List<GameObject> questPrefabs;
 
     void Start()
     {
-        Quests();
-        Bottles();
+        SpawnQuests();
     }
 
-    private void Quests()
+    void SpawnQuests()
     {
-        List<Transform> availablePos = new List<Transform>(questsPos);
-        List<int> usedIndexes = new List<int>();
-
-        foreach (GameObject quest in quests)
+        if (spawnPoints.Count < questPrefabs.Count)
         {
-            int randomIndex;
-            Transform spawnTransform;
+            Debug.LogError("Il n'y a pas assez de points de spawn pour toutes les quêtes !");
+            return;
+        }
 
-            do
-            {
-                randomIndex = Random.Range(0, availablePos.Count);
-            } while (usedIndexes.Contains(randomIndex));
+        // Liste des indices de points de spawn disponibles
+        List<int> availableSpawnIndices = new List<int>();
+        for (int i = 0; i < spawnPoints.Count; i++)
+        {
+            availableSpawnIndices.Add(i);
+        }
 
-            spawnTransform = availablePos[randomIndex];
-            usedIndexes.Add(randomIndex);
+        // Pour chaque quête, choisir un point de spawn aléatoire
+        foreach (var questPrefab in questPrefabs)
+        {
+            // Sélection aléatoire d'un index de point de spawn
+            int randomIndex = Random.Range(0, availableSpawnIndices.Count);
+            int spawnIndex = availableSpawnIndices[randomIndex];
 
-            Instantiate(quest, spawnTransform.position, Quaternion.identity);
+            // Instantiation de la quête sur le point de spawn sélectionné
+            Instantiate(questPrefab, spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
+
+            // Suppression du point de spawn utilisé pour éviter les duplications
+            availableSpawnIndices.RemoveAt(randomIndex);
         }
     }
+}
 
-    private void Bottles()
+
+/*private void Bottles()
     {
         List<Transform> availableBottlePos = new List<Transform>(bottlePos);
 
@@ -65,4 +67,4 @@ public class QuestManager : MonoBehaviour
             availableBottlePos.RemoveAt(randomIndex);
         }
     }
-}
+}*/
