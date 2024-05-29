@@ -14,7 +14,8 @@ public class QuestSyncCanvas : NetworkBehaviour
     [SyncVar(hook = nameof(OnTextChangedC))] private string syncedTextC;
     [SyncVar(hook = nameof(OnTextChangedD))] private string syncedTextD;
 
-    [SyncVar(hook = nameof(OnIChanged))] private int syncedI;
+    [SyncVar(hook = nameof(OnValueChanged))]
+    private int syncedValue;
 
     public bool questAfinish = false;
 
@@ -35,23 +36,43 @@ public class QuestSyncCanvas : NetworkBehaviour
     public void QuestA()
     {
 
-        if (syncedI == 3)
+        if (syncedValue == 3)
         {
             UpdateTextA("Quest A Complete");
         }
         
     }
-    public void UpdateI()
+
+    /// <summary>
+    ///                 syncedValue
+    /// </summary>
+
+    // Hook qui sera appelé lorsque syncedValue change
+    private void OnValueChanged(int oldValue, int newValue)
     {
-        if (isServer)
+        Debug.Log($"Value changed from {oldValue} to {newValue}");
+        // Mettez à jour l'interface utilisateur ou d'autres composants ici
+    }
+
+    private void Update()
+    {
+        if (isLocalPlayer && Input.GetKeyDown(KeyCode.A))
         {
-            IncrementI();
-        }
-        else
-        {
-            CmdUpdateI();
+            // Appel de la méthode pour incrémenter la valeur
+            CmdIncrementValue();
         }
     }
+
+    [Command]
+    private void CmdIncrementValue()
+    {
+        // Incrémentation de la valeur côté serveur
+        syncedValue++;
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+
 
     public void EndGame()
     {
@@ -146,28 +167,12 @@ public class QuestSyncCanvas : NetworkBehaviour
         }
     }
 
-    [Command]
-    void CmdUpdateI()
-    {
-        IncrementI();
-    }
-    void IncrementI()
-    {
-        syncedI++;
-        Debug.Log($"IncrementI called, syncedI is now {syncedI}");
-    }
+    
 
     [Command]
     void CmdUpdateTextD(string newText)
     {
         syncedTextD = newText;
-    }
-
-    void OnIChanged(int oldI, int newI)
-    {
-        // Here you can handle UI updates or other logic when `i` changes.
-        Debug.Log($"i changed from {oldI} to {newI}");
-        QuestA();
     }
 
     void OnTextChangedD(string oldText, string newText)
