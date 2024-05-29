@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class Interact : MonoBehaviour
 {
-    public Slider progressBar;
-    public float fillSpeed;
+    public Slider progressBar; // Référence au Slider UI
+    public float fillSpeed = 0.5f; // Vitesse de remplissage de la barre
 
     private bool isPlayerInRange = false;
     private bool isFilling = false;
@@ -25,12 +25,14 @@ public class Interact : MonoBehaviour
             progressBar.value += fillSpeed * Time.deltaTime;
             if (progressBar.value >= progressBar.maxValue)
             {
-                Debug.Log("Quest completed !");
+                Debug.Log("Player has completed the interaction!");
+                // Réinitialisez la barre ou déclenchez l'événement souhaité
+                progressBar.value = 0;
             }
         }
         else
         {
-
+            // Arrêter de remplir la barre
         }
     }
 
