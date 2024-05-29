@@ -14,7 +14,6 @@ public class QuestSyncCanvas : NetworkBehaviour
     [SyncVar(hook = nameof(OnTextChangedC))] private string syncedTextC;
     [SyncVar(hook = nameof(OnTextChangedD))] private string syncedTextD;
 
-    [SyncVar(hook = nameof(OnValueChanged))] private int syncedValue;
 
 
     public bool questAfinish = false;
@@ -35,11 +34,10 @@ public class QuestSyncCanvas : NetworkBehaviour
 
     public void QuestA()
     {
-
-        if (syncedValue == 3)
+        /*if ( == 3)
         {
             UpdateTextA("Quest A Complete");
-        }
+        }*/
         
     }
 
@@ -47,28 +45,7 @@ public class QuestSyncCanvas : NetworkBehaviour
     ///                 syncedValue
     /// </summary>
 
-    public void UpdateChanged(int newText)
-    {
-        if (isServer)
-        {
-            syncedValue = newText;
-        }
-        else
-        {
-            CmdUpdateInt(newText);
-        }
-    }
-
-    [Command]
-    void CmdUpdateInt(int newText)
-    {
-        syncedValue = newText;
-    }
-
-    void OnValueChanged(int oldText, int newText)
-    {
-        syncedValue = newText;
-    }
+    
 
     /// <summary>
     /// 
@@ -167,8 +144,7 @@ public class QuestSyncCanvas : NetworkBehaviour
             CmdUpdateTextD(newText);
         }
     }
-
-    
+   
 
     [Command]
     void CmdUpdateTextD(string newText)
