@@ -25,14 +25,12 @@ public class Interact : MonoBehaviour
             progressBar.value += fillSpeed * Time.deltaTime;
             if (progressBar.value >= progressBar.maxValue)
             {
-                Debug.Log("Player has completed the interaction!");
-                // Réinitialisez la barre ou déclenchez l'événement souhaité
-                progressBar.value = 0;
+                Debug.Log("Quest completed !");
             }
         }
         else
         {
-            // Arrêter de remplir la barre
+            progressBar.value = 0;
         }
     }
 
@@ -50,6 +48,7 @@ public class Interact : MonoBehaviour
         {
             isPlayerInRange = false;
             isFilling = false;
+            progressBar.value = 0; // Réinitialiser la barre si le joueur sort de la zone
         }
     }
 }
