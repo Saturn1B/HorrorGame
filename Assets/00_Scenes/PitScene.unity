@@ -3375,6 +3375,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1010887722025847390, guid: 4aa19725531da834c8465c4b5b825aee,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 91a712b806e7f5746b78017225046b50, type: 2}
     - target: {fileID: 3422832932124369827, guid: 4aa19725531da834c8465c4b5b825aee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3383,7 +3388,7 @@ PrefabInstance:
     - target: {fileID: 3422832932124369827, guid: 4aa19725531da834c8465c4b5b825aee,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.78
+      value: 0.047
       objectReference: {fileID: 0}
     - target: {fileID: 3422832932124369827, guid: 4aa19725531da834c8465c4b5b825aee,
         type: 3}
@@ -3435,11 +3440,36 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5526088853513035381, guid: 4aa19725531da834c8465c4b5b825aee,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.6260152
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526088853513035381, guid: 4aa19725531da834c8465c4b5b825aee,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.86195636
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526088853513035381, guid: 4aa19725531da834c8465c4b5b825aee,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.041350543
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526088853513035381, guid: 4aa19725531da834c8465c4b5b825aee,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.403522
+      objectReference: {fileID: 0}
     - target: {fileID: 5927383919078466516, guid: 4aa19725531da834c8465c4b5b825aee,
         type: 3}
       propertyPath: m_Name
       value: Quete
       objectReference: {fileID: 0}
+    - target: {fileID: 8370064268840217097, guid: 4aa19725531da834c8465c4b5b825aee,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: abc00000000008554655151183305669, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
