@@ -29,10 +29,17 @@ public class QuestSyncCanvas : NetworkBehaviour
         UpdateTextC("Find 650 barrels");
         UpdateTextD("Find 10000 barrels");
     }
+    private int i = 0;
 
     public void QuestA()
     {
-        UpdateTextA("Quest A Complete");
+        i++;
+
+        if (i == 3)
+        {
+            UpdateTextA("Quest A Complete");
+        }
+        
     }
 
     public void EndGame()

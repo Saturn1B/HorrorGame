@@ -4358,7 +4358,6 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 3079131772612418971, guid: 8875e7ec616fe0e42a995424f2ae167b, type: 3}
   - {fileID: 8377672783287281942, guid: da7ccc351f8f0664ba9871a57a65d509, type: 3}
-  - {fileID: 3983801540624070959, guid: 3950c74f7910894489b87611e6f2f3d8, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -4389,9 +4388,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  hostButton: {fileID: 1917249963}
-  canvas: {fileID: 1541770323}
-  canvasHud: {fileID: 1541770323}
 --- !u!114 &736648362
 MonoBehaviour:
   m_ObjectHideFlags: 0
