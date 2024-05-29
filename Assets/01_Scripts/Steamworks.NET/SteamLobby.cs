@@ -32,7 +32,7 @@ public class SteamLobby : NetworkBehaviour
         ForceStart();
     }
 
-    private void ForceStart()
+    public void ForceStart()
 	{
         Debug.LogError("Start SteamLobby");
 
