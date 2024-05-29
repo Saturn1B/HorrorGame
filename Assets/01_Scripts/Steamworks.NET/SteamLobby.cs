@@ -29,43 +29,63 @@ public class SteamLobby : NetworkBehaviour
 
     private void Start()
     {
-        networkManager = GetComponent<NetworkManager>();
+        Debug.LogError("Start SteamLobby");
 
-        if (!SteamManager.Initialized) { return; }
+        if (networkManager == null)
+            networkManager = NetworkManager.singleton;
+
+        Debug.LogError("Found networkManager.");
+
+
+        if (!SteamManager.Initialized)
+        {
+            Debug.LogError("SteamManager is not initialized.");
+            return;
+        }
+        Debug.LogError("SteamManager is initialized.");
 
         lobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         gameLobbyJoinRequested = Callback<GameLobbyJoinRequested_t>.Create(OnGameLobbyJoinRequested);
         lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
 
+        Debug.LogError("Callbacks are initialized.");
     }
 
-    public void HostLobby()
+    void Update()
+	{
+		// Ensure SteamAPI runs its internal updates
+		SteamAPI.RunCallbacks();
+	}
+
+    //link to host button on main menu
+	public void HostLobby()
     {
-        hostButton.SetActive(false);
-        //SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+        //hostButton.SetActive(false);
         if (SteamAPI.Init())
         {
             Debug.Log("Steam API initialized successfully.");
             if (networkManager == null)
-                networkManager = GetComponent<NetworkManager>();
+                networkManager = NetworkManager.singleton;
 
-            if (networkManager != null)
-            {
+            //if (NetworkManager.singleton != null)
+            //{
+            //    Debug.LogError("found networkManager!");
+
                 try
                 {
-                    Debug.Log($"Attempting to create lobby with maxConnections: {networkManager.maxConnections}");
-                    SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
-                    Debug.Log("Lobby creation successful.");
+                    Debug.LogError($"Attempting to create lobby with maxConnections: {NetworkManager.singleton.maxConnections}");
+                    SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, NetworkManager.singleton.maxConnections);
+                    Debug.LogError("Lobby creation successful.");
                 }
                 catch (System.Exception ex)
                 {
                     Debug.LogError($"Exception while creating lobby: {ex.Message}\n{ex.StackTrace}");
                 }
-            }
-            else
-            {
-                Debug.LogError("networkManager is null.");
-            }
+            //}
+            //else
+            //{
+            //    Debug.LogError("networkManager is null.");
+            //}
         }
         else
         {
@@ -76,13 +96,20 @@ public class SteamLobby : NetworkBehaviour
 
     private void OnLobbyCreated(LobbyCreated_t callback)
     {
+        Debug.LogError("OnLobbyCreated callback triggered.");
+
         if (callback.m_eResult != EResult.k_EResultOK)
         {
-            hostButton.SetActive(true);
+            Debug.LogError("Failed to create lobby.");
+
+            //hostButton.SetActive(true);
             return;
         }
 
-        networkManager.StartHost();
+        Debug.LogError("Lobby created successfully.");
+        Debug.LogError($"Lobby ID: {callback.m_ulSteamIDLobby}");
+
+        NetworkManager.singleton.StartHost();
 
         SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
 
@@ -96,19 +123,24 @@ public class SteamLobby : NetworkBehaviour
 
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
-        if(NetworkServer.active)
+        Debug.LogError($"Entered lobby: {callback.m_ulSteamIDLobby}");
+
+        if (NetworkServer.active)
         {
+            Debug.LogError("NetworkServer is active.");
             return;
         }
 
         if (isClient)
         {
+            Debug.LogError("Client is active, setting canvas inactive.");
             canvas.SetActive(false);
         }
 
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
-        networkManager.networkAddress = hostAddress;
-        networkManager.StartClient();
+        Debug.LogError($"Host address: {hostAddress}");
+        NetworkManager.singleton.networkAddress = hostAddress;
+        NetworkManager.singleton.StartClient();
 
         hostButton.SetActive(false);
         canvasHud.SetActive(false);
