@@ -1,18 +1,27 @@
-using Mirror;
 using UnityEngine;
+using Mirror;
 
-public class ObjectFinder : NetworkBehaviour
+public class PlayerObjectFinder : NetworkBehaviour
 {
-    [SerializeField] private int objectID; // Set this in the Inspector for each object (1, 2, or 3)
-    public ObjectStateSync stateSync;
+    [SerializeField]
+    private ObjectStateSync stateSync;
+    [SerializeField]
+    private int obj;
 
-
-    public void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (!isLocalPlayer)
         {
-            stateSync.FindObject(objectID);
-            gameObject.SetActive(false);
+            return;
+        }
+        //stateSync = FindObjectOfType<ObjectStateSync>();
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            FindObject(obj);
         }
     }
 
@@ -27,6 +36,13 @@ public class ObjectFinder : NetworkBehaviour
     [Command]
     private void CmdFindObject(int objectID)
     {
-        stateSync.FindObject(objectID);
+        if (stateSync != null)
+        {
+            stateSync.FindObject(objectID);
+        }
+        else
+        {
+            Debug.LogWarning("ObjectStateSync is not found.");
+        }
     }
 }

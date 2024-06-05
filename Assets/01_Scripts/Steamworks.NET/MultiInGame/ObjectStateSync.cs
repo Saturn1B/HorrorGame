@@ -13,6 +13,8 @@ public class ObjectStateSync : NetworkBehaviour
     [SyncVar(hook = nameof(OnObject3StateChanged))]
     private bool isObject3Found;
 
+    public GameObject obj;
+
     // Méthodes pour récupérer les objets
     [Server]
     public void FindObject(int objectID)
@@ -21,6 +23,7 @@ public class ObjectStateSync : NetworkBehaviour
         {
             case 1:
                 isObject1Found = true;
+                obj.SetActive(false);
                 break;
             case 2:
                 isObject2Found = true;
