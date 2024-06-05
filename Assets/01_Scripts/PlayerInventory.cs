@@ -68,18 +68,18 @@ public class PlayerInventory : MonoBehaviour
 				{
 					StopAllCoroutines();
 					StartCoroutine(ShowItemName(selectedSlot.itemDescription.itemName));
-				}
 
-				if (itemDescription.itemPrefab != null)
-				{
-					objectInHand.gameObject.SetActive(true);
+					if (itemDescription.itemPrefab != null)
+					{
+						objectInHand.gameObject.SetActive(true);
 
-					objectInHand.GetComponent<MeshFilter>().mesh = selectedSlot.itemDescription.itemPrefab.GetComponent<MeshFilter>().sharedMesh;
-					objectInHand.GetComponent<MeshRenderer>().material = selectedSlot.itemDescription.itemPrefab.GetComponent<MeshRenderer>().sharedMaterial;
-				}
-				else
-				{
-					objectInHand.gameObject.SetActive(false);
+						objectInHand.GetComponent<MeshFilter>().mesh = selectedSlot.itemDescription.itemPrefab.GetComponent<MeshFilter>().sharedMesh;
+						objectInHand.GetComponent<MeshRenderer>().material = selectedSlot.itemDescription.itemPrefab.GetComponent<MeshRenderer>().sharedMaterial;
+					}
+					else
+					{
+						objectInHand.gameObject.SetActive(false);
+					}
 				}
 
 				return true;

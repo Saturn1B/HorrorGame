@@ -53,12 +53,12 @@ public class HeadBobbing : MonoBehaviour
         if (!enable) return;
 
         CheckMotion();
-        cam.LookAt(FocusTarget());
+        //cam.LookAt(FocusTarget());
     }
 
     private Vector3 FocusTarget()
 	{
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + camHolder.localPosition.y, transform.position.z);
+        Vector3 pos = new Vector3(cam.position.x, transform.position.y + camHolder.localPosition.y, transform.position.z);
         pos += camHolder.forward * 15;
         return pos;
 	}
