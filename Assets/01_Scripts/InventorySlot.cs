@@ -107,7 +107,6 @@ public class InventorySlot : NetworkBehaviour
 		{
 			itemDescription = null;
 			itemImage.gameObject.SetActive(false);
-			playerInventory.HideHandItem();
 		}
 	}
 	public int GetItemNumber() { return itemNumber; }

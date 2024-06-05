@@ -10,7 +10,6 @@ public class PlayerInventory : MonoBehaviour
 	[SerializeField] private Transform inventoryPanel;
 	[SerializeField] private Color selected, unselected;
 	[SerializeField] private TMP_Text itemText;
-	[SerializeField] private GameObject objectInHand;
     private InventorySlot[] inventorySlots;
 	private InventorySlot selectedSlot;
 	private int slotIndex;
@@ -69,19 +68,6 @@ public class PlayerInventory : MonoBehaviour
 					StopAllCoroutines();
 					StartCoroutine(ShowItemName(selectedSlot.itemDescription.itemName));
 				}
-
-				if (itemDescription.itemPrefab != null)
-				{
-					objectInHand.gameObject.SetActive(true);
-
-					objectInHand.GetComponent<MeshFilter>().mesh = selectedSlot.itemDescription.itemPrefab.GetComponent<MeshFilter>().sharedMesh;
-					objectInHand.GetComponent<MeshRenderer>().material = selectedSlot.itemDescription.itemPrefab.GetComponent<MeshRenderer>().sharedMaterial;
-				}
-				else
-				{
-					objectInHand.gameObject.SetActive(false);
-				}
-
 				return true;
 			}
 		}
@@ -105,21 +91,6 @@ public class PlayerInventory : MonoBehaviour
 		{
 			StopAllCoroutines();
 			StartCoroutine(ShowItemName(selectedSlot.itemDescription.itemName));
-			if (selectedSlot.itemDescription.itemPrefab)
-			{
-				objectInHand.gameObject.SetActive(true);
-
-				objectInHand.GetComponent<MeshFilter>().mesh = selectedSlot.itemDescription.itemPrefab.GetComponent<MeshFilter>().sharedMesh;
-				objectInHand.GetComponent<MeshRenderer>().material = selectedSlot.itemDescription.itemPrefab.GetComponent<MeshRenderer>().sharedMaterial;
-			}
-			else
-			{
-				objectInHand.gameObject.SetActive(false);
-			}
-		}
-		else
-		{
-			objectInHand.gameObject.SetActive(false);
 		}
 	}
 
@@ -148,10 +119,5 @@ public class PlayerInventory : MonoBehaviour
 			slot.AddItemNumber(-slot.GetItemNumber());
 		}
 		inventoryPanel.gameObject.SetActive(false);
-	}
-
-	public void HideHandItem()
-	{
-		objectInHand.SetActive(false);
 	}
 }
