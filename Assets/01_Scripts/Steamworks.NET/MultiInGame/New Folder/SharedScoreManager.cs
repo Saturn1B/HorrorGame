@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestInt : NetworkBehaviour // ok poour un score visible de tt els joueur mais il appartien au joueur 
+public class SharedScoreManager : NetworkBehaviour
 {
-    /*[SyncVar(hook = nameof(OnScoreChanged))]
-    private int score;
+    [SyncVar(hook = nameof(OnScoreChanged))]
+    private int sharedScore;
 
     void Update()
     {
-        if (isLocalPlayer && Input.GetKeyDown(KeyCode.I))
+        if (isClient && Input.GetKeyDown(KeyCode.I))
         {
             CmdAddScore();
         }
@@ -19,7 +19,7 @@ public class TestInt : NetworkBehaviour // ok poour un score visible de tt els j
     [Command]
     void CmdAddScore()
     {
-        score += 1;
+        sharedScore += 1;
     }
 
     void OnScoreChanged(int oldScore, int newScore)
@@ -30,9 +30,6 @@ public class TestInt : NetworkBehaviour // ok poour un score visible de tt els j
 
     void OnGUI()
     {
-        if (isLocalPlayer)
-        {
-            GUILayout.Label($"Score: {score}");
-        }
-    }*/
+        GUILayout.Label($"Shared Score: {sharedScore}");
+    }
 }

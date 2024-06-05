@@ -1956,6 +1956,7 @@ GameObject:
   - component: {fileID: 787158766813462605}
   - component: {fileID: 1924455628435462411}
   - component: {fileID: 2839042219371998306}
+  - component: {fileID: 4323959929240107690}
   m_Layer: 0
   m_Name: FPSPlayer MultyV2
   m_TagString: Player
@@ -2261,6 +2262,21 @@ MonoBehaviour:
   frequency: 10
   cam: {fileID: 8340206379691751268}
   camHolder: {fileID: 422660079679993430}
+--- !u!114 &4323959929240107690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342106431650556681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e39d30b15da7f41aef6edb25e2a4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &8669551342242045208
 GameObject:
   m_ObjectHideFlags: 0
