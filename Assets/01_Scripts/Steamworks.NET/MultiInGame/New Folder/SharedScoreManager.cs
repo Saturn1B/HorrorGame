@@ -10,9 +10,12 @@ public class SharedScoreManager : NetworkBehaviour
 
     void Update()
     {
-        if (isClient && Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            CmdAddScore();
+            if (isLocalPlayer)
+            {
+                CmdAddScore();
+            }
         }
     }
 
@@ -20,6 +23,15 @@ public class SharedScoreManager : NetworkBehaviour
     void CmdAddScore()
     {
         sharedScore += 1;
+    }
+
+    [ClientRpc]
+    private void RpcScore()
+    {
+        if (!isLocalPlayer)
+        {
+            sharedScore += 1;
+        }
     }
 
     void OnScoreChanged(int oldScore, int newScore)
