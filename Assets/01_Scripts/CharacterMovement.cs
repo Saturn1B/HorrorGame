@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
     [SerializeField] private float lookSensitivity;
+    [SerializeField] private Transform rightHand;
 
     [Title("Player Movement")]
     [SerializeField] private float moveSpeed;
@@ -137,6 +138,7 @@ public class CharacterMovement : MonoBehaviour
 
         transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
         playerCamera.transform.localEulerAngles = new Vector3(pitch, 0.0f, 0.0f);
+        rightHand.localEulerAngles = new Vector3(pitch, 0.0f, 0.0f);
     }
 
     private void HandleJump()
